@@ -1,0 +1,6 @@
+framework module Pods_Movie_Mentor_Movie_MentorUITests {
+  umbrella header "Pods-Movie Mentor-Movie MentorUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
