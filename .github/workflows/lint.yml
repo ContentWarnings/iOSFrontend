@@ -3,8 +3,8 @@ name: SwiftLint
 on:
    push:
      paths:
-       - '.github/workflows/swiftlint.yml'
-       - '.swiftlint.yml'
+       - '.github/workflows/lint.yml'
+       - '.lint.yml'
        - '**.swift'
 
 jobs:
