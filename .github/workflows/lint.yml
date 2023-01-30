@@ -1,13 +1,13 @@
 name: SwiftLint
 
- on:
+on:
    push:
      paths:
        - '.github/workflows/swiftlint.yml'
        - '.swiftlint.yml'
        - '**.swift'
 
- jobs:
+jobs:
    SwiftLint:
      runs-on: self-hosted
      steps:
