@@ -1,5 +1,11 @@
+# References
+# https://github.com/marketplace/actions/github-actions-for-swiftlint
+#
+# as per Apache 2.0 License, we have put in comments any changes to codefile
+
 name: SwiftLint
 
+# added section for 'push'
 on:
   push:
     paths:
@@ -12,6 +18,7 @@ on:
       - '.swiftlint.yml'
       - '**/*.swift'
 
+# changed swift-version from 5.6.1 to 5.7 below
 jobs:
   SwiftLint:
     runs-on: ubuntu-latest
@@ -22,3 +29,4 @@ jobs:
           swift-version: '5.7'
       - name: GitHub Actions for SwiftLint
         uses: sinoru/actions-swiftlint@v6
+# removed steps for other variations of the action
