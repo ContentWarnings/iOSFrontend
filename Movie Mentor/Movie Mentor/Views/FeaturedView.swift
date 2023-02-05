@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  FeaturedView.swift
 //  Movie Mentor
 //
 //  Created by Jacob Franz on 1/22/23.
@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct FeaturedView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image(systemName: "star.fill")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
-            Text("This is a test!")
+            Text("This tab will show the featured movies!")
         }
         .padding()
     }
@@ -22,6 +21,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        FeaturedView()
     }
 }

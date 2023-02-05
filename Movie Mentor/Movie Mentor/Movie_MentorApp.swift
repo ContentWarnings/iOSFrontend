@@ -11,7 +11,7 @@ import SwiftUI
 struct Movie_MentorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
