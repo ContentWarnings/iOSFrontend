@@ -26,6 +26,7 @@ struct MainView: View {
                     Text("Setting")
                 }
         }
+        .accentColor(Color("Primary"))
     }
 }
 

@@ -12,7 +12,7 @@ struct FeaturedView: View {
         VStack {
             Image(systemName: "star.fill")
                 .imageScale(.large)
-                .foregroundColor(.accentColor)
+                .foregroundColor(Color("Secondary"))
             Text("This tab will show the featured movies!")
         }
         .padding()

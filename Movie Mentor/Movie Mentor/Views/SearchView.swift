@@ -12,7 +12,7 @@ struct SearchView: View {
         VStack {
             Image(systemName: "magnifyingglass")
                 .imageScale(.large)
-                .foregroundColor(.accentColor)
+                .foregroundColor(Color("Secondary"))
             Text("This tab will allow for movie searching!")
         }
         .padding()

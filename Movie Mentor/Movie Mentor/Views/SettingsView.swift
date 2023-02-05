@@ -12,7 +12,7 @@ struct SettingsView: View {
         VStack {
             Image(systemName: "gearshape.fill")
                 .imageScale(.large)
-                .foregroundColor(.accentColor)
+                .foregroundColor(Color("Secondary"))
             Text("This tab will show the user settings!")
         }
         .padding()
