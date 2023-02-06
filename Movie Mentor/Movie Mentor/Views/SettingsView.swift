@@ -1,10 +1,3 @@
-//
-//  SettingsView.swift
-//  Movie Mentor
-//
-//  Created by Jacob Franz on 2/5/23.
-//
-
 import SwiftUI
 
 struct SettingsView: View {

@@ -1,10 +1,3 @@
-//
-//  FeaturedView.swift
-//  Movie Mentor
-//
-//  Created by Jacob Franz on 1/22/23.
-//
-
 import SwiftUI
 
 struct FeaturedView: View {
