@@ -1,10 +1,3 @@
-//
-//  Movie_MentorTests.swift
-//  Movie MentorTests
-//
-//  Created by Jacob Franz on 1/22/23.
-//
-
 import XCTest
 @testable import Movie_Mentor
 

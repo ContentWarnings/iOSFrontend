@@ -1,10 +1,3 @@
-//
-//  Movie_MentorUITestsLaunchTests.swift
-//  Movie MentorUITests
-//
-//  Created by Jacob Franz on 1/22/23.
-//
-
 import XCTest
 
 final class Movie_MentorUITestsLaunchTests: XCTestCase {
