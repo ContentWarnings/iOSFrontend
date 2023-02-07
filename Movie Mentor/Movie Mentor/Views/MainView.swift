@@ -19,7 +19,7 @@ struct MainView: View {
                     Text("Setting")
                 }
         }
-        .accentColor(Color("Primary"))
+        .tint(Color("Primary"))
     }
 }
 
