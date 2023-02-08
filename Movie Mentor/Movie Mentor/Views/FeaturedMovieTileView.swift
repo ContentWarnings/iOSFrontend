@@ -13,7 +13,7 @@ struct FeaturedMovieTileView: View {
             .frame(height: 240.0)
             .cornerRadius(14.0)
             Text(movie.title)
-                .font(Font.custom("Roboto-Regular", size: 22))
+                .font(Font.custom("Roboto-Medium", size: 22))
                 .lineLimit(2)
         }
         .frame(width: 160.0)
