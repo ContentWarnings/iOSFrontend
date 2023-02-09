@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SearchView: View {
+    @State private var searchString = ""
+    
     var body: some View {
         VStack {
             Image(systemName: "magnifyingglass")
