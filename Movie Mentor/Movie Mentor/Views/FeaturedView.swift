@@ -16,13 +16,13 @@ struct FeaturedView: View {
                 LogoHeaderView(pageTitle: "Trending")
                     .padding(.bottom, -1.0)
                 SearchBarView(searchString: .constant(""), selectedTab: $selectedTab)
-                    .padding(/*@START_MENU_TOKEN@*/.horizontal, 22.0/*@END_MENU_TOKEN@*/)
+                    .padding(.horizontal, 22.0)
                 LazyVGrid(columns: columns) {
                     ForEach(movies) { movie in
                         FeaturedMovieTileView(movie: movie)
                     }
                 }
-                .padding(/*@START_MENU_TOKEN@*/[.top, .leading, .trailing]/*@END_MENU_TOKEN@*/)
+                .padding([.top, .leading, .trailing])
             }
         }
     }
