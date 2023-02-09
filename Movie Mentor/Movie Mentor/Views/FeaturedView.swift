@@ -2,14 +2,14 @@ import SwiftUI
 
 struct FeaturedView: View {
     @Binding var selectedTab: String
-    
+
     let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     let height: CGFloat = 300
     let movies: [MovieReduced] = MovieReduced.testData
-    
+
     var body: some View {
         ScrollView {
             VStack {

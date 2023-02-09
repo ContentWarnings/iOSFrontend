@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FeaturedMovieTileView: View {
     let movie: MovieReduced
-    
+
     var body: some View {
         VStack {
             AsyncImage(url: movie.img) { image in

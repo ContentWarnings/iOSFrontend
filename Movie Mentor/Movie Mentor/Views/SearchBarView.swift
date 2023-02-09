@@ -4,7 +4,7 @@ struct SearchBarView: View {
     @Binding var searchString: String
     @FocusState private var fieldIsFocused: Bool
     @Binding var selectedTab: String
-    
+
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -14,7 +14,7 @@ struct SearchBarView: View {
                 .font(Font.custom("Roboto-Regular", size: 18))
                 .focused($fieldIsFocused)
                 .onChange(of: fieldIsFocused) { isFocused in
-                    if (isFocused && selectedTab != "Search") {
+                    if isFocused && selectedTab != "Search" {
                         selectedTab = "Search"
                     }
                 }

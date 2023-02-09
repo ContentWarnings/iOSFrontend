@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedTab = "Featured"
-    
+
     var body: some View {
         TabView(selection: $selectedTab) {
             FeaturedView(selectedTab: $selectedTab)

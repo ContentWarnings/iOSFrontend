@@ -2,7 +2,7 @@ import SwiftUI
 
 struct LogoHeaderView: View {
     let pageTitle: String
-    
+
     var body: some View {
         HStack {
             Image(decorative: "Logo")
