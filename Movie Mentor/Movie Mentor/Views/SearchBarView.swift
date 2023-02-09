@@ -2,6 +2,8 @@ import SwiftUI
 
 struct SearchBarView: View {
     @Binding var searchString: String
+    @FocusState private var fieldIsFocused: Bool
+    @Binding var selectedTab: String
     
     var body: some View {
         HStack {
@@ -10,6 +12,12 @@ struct SearchBarView: View {
                 .opacity(0.3)
             TextField("Search All Movies", text: $searchString)
                 .font(Font.custom("Roboto-Regular", size: 18))
+                .focused($fieldIsFocused)
+                .onChange(of: fieldIsFocused) { isFocused in
+                    if (isFocused && selectedTab != "Search") {
+                        selectedTab = "Search"
+                    }
+                }
         }
         .padding(10.0)
         .background(RoundedRectangle(cornerRadius: 11 ).fill(Color("SearchBarBackground")).opacity(0.24))
@@ -18,7 +26,7 @@ struct SearchBarView: View {
 
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBarView(searchString: .constant(""))
+        SearchBarView(searchString: .constant(""), selectedTab: .constant("Search"))
             .frame(width: 343.0, height: 37.0)
     }
 }
