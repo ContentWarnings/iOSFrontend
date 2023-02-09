@@ -15,6 +15,8 @@ struct SearchBarView: View {
                 .focused($fieldIsFocused)
                 .onChange(of: fieldIsFocused) { isFocused in
                     if isFocused && selectedTab != "Search" {
+                        UIApplication.shared.sendAction(
+                            #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                         selectedTab = "Search"
                     }
                 }
