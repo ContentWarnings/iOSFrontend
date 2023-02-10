@@ -1,19 +1,35 @@
 import SwiftUI
 
 struct FeaturedView: View {
+    @Binding var selectedTab: String
+
+    let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    let height: CGFloat = 300
+    let movies: [MovieReduced] = MovieReduced.testData
+
     var body: some View {
-        VStack {
-            Image(systemName: "star.fill")
-                .imageScale(.large)
-                .foregroundColor(Color("Secondary"))
-            Text("This tab will show the featured movies!")
+        ScrollView {
+            VStack {
+                LogoHeaderView(pageTitle: "Trending")
+                    .padding(.bottom, -1.0)
+                SearchBarView(searchString: .constant(""), selectedTab: $selectedTab)
+                    .padding(.horizontal, 22.0)
+                LazyVGrid(columns: columns) {
+                    ForEach(movies) { movie in
+                        FeaturedMovieTileView(movie: movie)
+                    }
+                }
+                .padding([.top, .leading, .trailing])
+            }
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedView()
+        FeaturedView(selectedTab: .constant("Featured"))
     }
 }
