@@ -213,16 +213,32 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		0FE94CAF29901DEF00095412 /* Views */ = {
+		0FD761FF299AD6D70060EB7E /* Pages */ = {
 			isa = PBXGroup;
 			children = (
 				0F718873297DA4F100772B79 /* FeaturedView.swift */,
 				0FE94CB229901E6700095412 /* MainView.swift */,
 				0FE94CB42990212100095412 /* SearchView.swift */,
 				0FE94CB6299021D500095412 /* SettingsView.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		0FD76200299AD6E80060EB7E /* Components */ = {
+			isa = PBXGroup;
+			children = (
 				0FD761E3299330C70060EB7E /* FeaturedMovieTileView.swift */,
 				0FD761FB2993875D0060EB7E /* LogoHeaderView.swift */,
 				0FD761FD29943F460060EB7E /* SearchBarView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0FE94CAF29901DEF00095412 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0FD76200299AD6E80060EB7E /* Components */,
+				0FD761FF299AD6D70060EB7E /* Pages */,
 			);
 			path = Views;
 			sourceTree = "<group>";
