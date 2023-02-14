@@ -11,7 +11,7 @@ struct MainView: View {
                     Text("Featured")
                 }
                 .tag("Featured")
-            SearchView()
+            SearchView(selectedTab: $selectedTab)
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                     Text("Search")
