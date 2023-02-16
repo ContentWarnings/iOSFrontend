@@ -11,6 +11,7 @@ struct GenreTileView: View {
                 .frame(height: 90.0)
                 .clipped()
                 .cornerRadius(11)
+                .allowsHitTesting(false)
             Rectangle()
                 .frame(height: 90.0)
                 .foregroundColor(Color("OLEDDark").opacity(0.75))

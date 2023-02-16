@@ -2,16 +2,17 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedTab = "Featured"
+    @State private var searchBarFocused = false
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            FeaturedView(selectedTab: $selectedTab)
+            FeaturedView(selectedTab: $selectedTab, searchBarFocused: $searchBarFocused)
                 .tabItem {
                     Label("Featured", systemImage: "star.fill")
                     Text("Featured")
                 }
                 .tag("Featured")
-            SearchView(selectedTab: $selectedTab)
+            SearchView(selectedTab: $selectedTab, searchBarFocused: $searchBarFocused)
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                     Text("Search")
@@ -25,6 +26,11 @@ struct MainView: View {
                 .tag("Settings")
         }
         .tint(Color("Primary"))
+        .onChange(of: selectedTab) { newTab in
+            if newTab != "Search" {
+                searchBarFocused = false
+            }
+        }
     }
 }
 
