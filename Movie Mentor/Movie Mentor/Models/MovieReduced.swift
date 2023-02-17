@@ -5,8 +5,10 @@ struct MovieReduced: Identifiable {
     var title: String
     var release: Date
     var img: URL
-    var mpa: String
-    var rating: Double
+    var overview: String
+    var runtime: Int
+    var genres: [String]
+    var cw: [String]
 }
 
 extension MovieReduced {
@@ -16,37 +18,91 @@ extension MovieReduced {
                      title: "Ant-Man and the Wasp: Quantumania",
                      release: Date.now,
                      img: URL(string: "https://image.tmdb.org/t/p/original/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg")!,
-                     mpa: "PG-13",
-                     rating: 7.6),
+                     overview: """
+                     Super-Hero partners Scott Lang and Hope van Dyne, along with with Hope's parents \
+                     Janet van Dyne and Hank Pym, and Scott's daughter Cassie Lang, find themselves exploring the \
+                     Quantum Realm, interacting with strange new creatures and embarking on an adventure that will \
+                     push them beyond the limits of what they thought possible.
+                     """,
+                     runtime: 125,
+                     genres: ["Adventure",
+                             "Science Fiction",
+                             "Comedy"],
+                     cw: []),
         MovieReduced(id: 76600,
                      title: "Avatar: The Way of Water",
                      release: Date.now,
                      img: URL(string: "https://image.tmdb.org/t/p/original/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg")!,
-                     mpa: "Unknown",
-                     rating: 7.744),
+                     overview: """
+                     Set more than a decade after the events of the first film, learn the story of the Sully family \
+                     (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep \
+                     each other safe, the battles they fight to stay alive, and the tragedies they endure.
+                     """,
+                     runtime: 192,
+                     genres: ["Science Fiction",
+                             "Adventure",
+                             "Action"],
+                     cw: []),
         MovieReduced(id: 315162,
                      title: "Puss in Boots: The Last Wish",
                      release: Date.now,
                      img: URL(string: "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg")!,
-                     mpa: "PG",
-                     rating: 8.561),
+                     overview: """
+                     Puss in Boots discovers that his passion for adventure has taken its toll: He has burned \
+                     through eight of his nine lives, leaving him with only one life left. Puss sets out on an \
+                     epic journey to find the mythical Last Wish and restore his nine lives.
+                     """,
+                     runtime: 103,
+                     genres: ["Animation",
+                             "Adventure",
+                             "Comedy",
+                             "Family",
+                             "Fantasy"],
+                     cw: []),
         MovieReduced(id: 6401469,
                      title: "Ant-Man and the Wasp: Quantumania",
                      release: Date.now,
                      img: URL(string: "https://image.tmdb.org/t/p/original/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg")!,
-                     mpa: "PG-13",
-                     rating: 7.6),
+                     overview: """
+                     Super-Hero partners Scott Lang and Hope van Dyne, along with with Hope's parents \
+                     Janet van Dyne and Hank Pym, and Scott's daughter Cassie Lang, find themselves exploring the \
+                     Quantum Realm, interacting with strange new creatures and embarking on an adventure that will \
+                     push them beyond the limits of what they thought possible.
+                     """,
+                     runtime: 125,
+                     genres: ["Adventure",
+                             "Science Fiction",
+                             "Comedy"],
+                     cw: []),
         MovieReduced(id: 766009,
                      title: "Avatar: The Way of Water",
                      release: Date.now,
                      img: URL(string: "https://image.tmdb.org/t/p/original/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg")!,
-                     mpa: "Unknown",
-                     rating: 7.744),
+                     overview: """
+                     Set more than a decade after the events of the first film, learn the story of the Sully family \
+                     (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep \
+                     each other safe, the battles they fight to stay alive, and the tragedies they endure.
+                     """,
+                     runtime: 192,
+                     genres: ["Science Fiction",
+                             "Adventure",
+                             "Action"],
+                     cw: []),
         MovieReduced(id: 3151629,
                      title: "Puss in Boots: The Last Wish",
                      release: Date.now,
                      img: URL(string: "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg")!,
-                     mpa: "PG",
-                     rating: 8.561)
+                     overview: """
+                     Puss in Boots discovers that his passion for adventure has taken its toll: He has burned \
+                     through eight of his nine lives, leaving him with only one life left. Puss sets out on an \
+                     epic journey to find the mythical Last Wish and restore his nine lives.
+                     """,
+                     runtime: 103,
+                     genres: ["Animation",
+                             "Adventure",
+                             "Comedy",
+                             "Family",
+                             "Fantasy"],
+                     cw: []),
     ]
 }
