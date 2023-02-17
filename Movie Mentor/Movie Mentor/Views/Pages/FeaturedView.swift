@@ -9,13 +9,15 @@ struct FeaturedView: View {
         GridItem(.flexible())
     ]
     let movies: [MovieReduced] = MovieReduced.testData
-    
+
     var body: some View {
         ScrollView {
             VStack {
                 LogoHeaderView(pageTitle: "Trending")
                     .padding(.bottom, -1.0)
-                SearchBarView(searchString: .constant(""), selectedTab: $selectedTab, searchBarFocused: $searchBarFocused)
+                SearchBarView(searchString: .constant(""),
+                              selectedTab: $selectedTab,
+                              searchBarFocused: $searchBarFocused)
                     .padding(.horizontal, 22.0)
                 LazyVGrid(columns: columns) {
                     ForEach(movies) { movie in

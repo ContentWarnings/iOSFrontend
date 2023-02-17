@@ -2,7 +2,7 @@ import SwiftUI
 
 struct GenreTileView: View {
     let genre: String
-    
+
     var body: some View {
         ZStack {
             Image("Action")

@@ -5,7 +5,7 @@ struct SearchBarView: View {
     @FocusState private var fieldIsFocused: Bool
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
-        
+
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -26,7 +26,7 @@ struct SearchBarView: View {
         }
         .padding(10.0)
         .background(RoundedRectangle(cornerRadius: 11 ).fill(Color("SearchBarBackground")).opacity(0.24))
-        .onAppear() {
+        .onAppear {
             fieldIsFocused = searchBarFocused
         }
     }

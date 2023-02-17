@@ -3,7 +3,7 @@ import SwiftUI
 struct SearchView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
-    
+
     @State private var searchString = ""
 
     var body: some View {
@@ -11,7 +11,9 @@ struct SearchView: View {
             VStack {
                 LogoHeaderView(pageTitle: "Search")
                     .padding(.bottom, -1.0)
-                SearchBarView(searchString: $searchString, selectedTab: $selectedTab, searchBarFocused: $searchBarFocused)
+                SearchBarView(searchString: $searchString,
+                              selectedTab: $selectedTab,
+                              searchBarFocused: $searchBarFocused)
                     .padding(/*@START_MENU_TOKEN@*/.horizontal, 22.0/*@END_MENU_TOKEN@*/)
                 LazyVStack(spacing: 0) {
                     ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
@@ -20,7 +22,6 @@ struct SearchView: View {
                         .padding(.vertical, 6.0)
                     }
                 }
-                
             }
         }
     }
