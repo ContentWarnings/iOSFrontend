@@ -23,7 +23,7 @@ struct SearchMovieTileView: View {
                     Text(movie.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(Font.custom("Roboto-Bold", size: 22))
-                        .padding(.leading, 0)
+                        .padding(.leading, -5)
                         .lineLimit(1)
                 }
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -55,7 +55,7 @@ struct SearchMovieTileView: View {
         }
         .frame(height: 95)
         .padding(.horizontal, 24)
-        .padding(.vertical, 5)
+        .padding(.vertical, 10)
     }
 }
 
