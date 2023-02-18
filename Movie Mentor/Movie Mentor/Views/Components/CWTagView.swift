@@ -11,6 +11,7 @@ struct CWTagView: View {
             .padding(5)
             .background(
                 RoundedRectangle(cornerRadius: 5)
+                    .frame(height: 20)
                     .foregroundColor(shouldWarn ? Color("Secondary") : Color("OffBlack"))
             )
     }

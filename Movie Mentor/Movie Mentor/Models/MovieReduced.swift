@@ -9,6 +9,13 @@ struct MovieReduced: Identifiable {
     var runtime: Int
     var genres: [String]
     var cw: [String]
+    
+    func searchDescriptionString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let yearString = dateFormatter.string(from: self.release)
+        return yearString + " - " + overview
+    }
 }
 
 extension MovieReduced {
@@ -28,7 +35,7 @@ extension MovieReduced {
                      genres: ["Adventure",
                              "Science Fiction",
                              "Comedy"],
-                     cw: []),
+                     cw: ["Kidnapping", "Drug Use"]),
         MovieReduced(id: 76600,
                      title: "Avatar: The Way of Water",
                      release: Date.now,
@@ -42,7 +49,7 @@ extension MovieReduced {
                      genres: ["Science Fiction",
                              "Adventure",
                              "Action"],
-                     cw: []),
+                     cw: ["Terrorism", "Death"]),
         MovieReduced(id: 315162,
                      title: "Puss in Boots: The Last Wish",
                      release: Date.now,
@@ -58,7 +65,7 @@ extension MovieReduced {
                              "Comedy",
                              "Family",
                              "Fantasy"],
-                     cw: []),
+                     cw: ["Violence", "Abuse"]),
         MovieReduced(id: 6401469,
                      title: "Ant-Man and the Wasp: Quantumania",
                      release: Date.now,
@@ -73,7 +80,7 @@ extension MovieReduced {
                      genres: ["Adventure",
                              "Science Fiction",
                              "Comedy"],
-                     cw: []),
+                     cw: ["Kidnapping", "Drug Use"]),
         MovieReduced(id: 766009,
                      title: "Avatar: The Way of Water",
                      release: Date.now,
@@ -87,7 +94,7 @@ extension MovieReduced {
                      genres: ["Science Fiction",
                              "Adventure",
                              "Action"],
-                     cw: []),
+                     cw: ["Terrorism", "Death"]),
         MovieReduced(id: 3151629,
                      title: "Puss in Boots: The Last Wish",
                      release: Date.now,
@@ -103,6 +110,6 @@ extension MovieReduced {
                              "Comedy",
                              "Family",
                              "Fantasy"],
-                     cw: []),
+                     cw: ["Violence", "Abuse"]),
     ]
 }
