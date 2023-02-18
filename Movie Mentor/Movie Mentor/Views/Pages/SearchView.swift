@@ -20,6 +20,7 @@ struct SearchView: View {
                     if searchString == "" {
                         // Display genre tiles if user hasn't searched yet
                         ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
+                            // TODO: Make each tile tappable to search genre
                             GenreTileView(genre: genre)
                             .padding(.horizontal, 24.0)
                             .padding(.vertical, 6.0)
