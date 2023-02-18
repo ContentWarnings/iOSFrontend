@@ -5,6 +5,7 @@ struct FeaturedMovieTileView: View {
 
     var body: some View {
         VStack {
+            // TODO: Replace with Kingfisher image
             AsyncImage(url: movie.img) { image in
                 image.resizable().scaledToFit()
             } placeholder: {

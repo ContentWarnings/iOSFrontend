@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         VStack {
+            // TODO: Replace with actual content
             Image(systemName: "gearshape.fill")
                 .imageScale(.large)
                 .foregroundColor(Color("Secondary"))

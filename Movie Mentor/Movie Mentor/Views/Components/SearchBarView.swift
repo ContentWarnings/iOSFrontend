@@ -17,6 +17,7 @@ struct SearchBarView: View {
                 .onChange(of: fieldIsFocused) { isFocused in
                     searchBarFocused = isFocused
 
+                    // Hide keyboard and navigate to search tab if not there
                     if isFocused && selectedTab != "Search" {
                         UIApplication.shared.sendAction(
                             #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

@@ -2,60 +2,62 @@ import SwiftUI
 
 struct SearchMovieTileView: View {
     let movie: MovieReduced
-    
-    @State private var hasWarning: Bool = true
+
+    @State private var hasWarning: Bool = true // TODO: Update with warning check logic
 
     var body: some View {
         HStack {
+            // TODO: Replace with Kingfisher image
             AsyncImage(url: movie.img) { image in
                 image.resizable().scaledToFit()
             } placeholder: {
                 ProgressView()
-                    .frame(width: 62)
+                    .frame(width: 62.0)
             }
             .cornerRadius(4)
             VStack(spacing: 0) {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .isEmpty(!hasWarning)
-                        .font(.system(size:20))
-                        .padding(.horizontal, 0)
+                        .font(.system(size: 20))
+                        .padding(.horizontal, 0.0)
                     Text(movie.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(Font.custom("Roboto-Bold", size: 22))
-                        .padding(.leading, -5)
+                        .padding(.leading, -5.0)
                         .lineLimit(1)
                 }
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack() {
+                    LazyHStack {
                         ForEach(movie.genres, id: \.self) { genre in
                             GenreTagView(genre: genre)
                         }
                     }
-                    .frame(height: 20)
-                    .padding(.top, 1)
+                    .frame(height: 20.0)
+                    .padding(.top, 1.0)
                 }
                 Text(movie.searchDescriptionString())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(Font.custom("Roboto-Regular", size: 16))
                     .opacity(0.5)
                     .lineLimit(1)
-                    .padding(.top, 3)
+                    .padding(.top, 3.0)
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack() {
-                        ForEach(movie.cw, id: \.self) { cw in
-                            CWTagView(warningName: cw, shouldWarn: false)
+                    LazyHStack {
+                        ForEach(movie.warnings, id: \.self) { warning in
+                            // TODO: Update with warning check logic
+                            CWTagView(warningName: warning, shouldWarn: false)
                         }
                     }
-                    .frame(height: 20)
-                    .padding(.top, 1)
+                    .frame(height: 20.0)
+                    .padding(.top, 1.0)
                 }
             }
             .frame(maxWidth: .infinity)
         }
-        .frame(height: 95)
-        .padding(.horizontal, 24)
-        .padding(.vertical, 10)
+        .frame(height: 95.0)
+        .padding(.horizontal, 24.0)
+        .padding(.vertical, 10.0)
     }
 }
 
@@ -65,9 +67,11 @@ struct SearchMovieTileView_Previews: PreviewProvider {
     }
 }
 
+// https://medium.com/macoclock/conditional-views-in-swiftui-dc09c808bc30
+// TODO: Properly cite source
 struct EmptyModifier: ViewModifier {
     let isEmpty: Bool
-    
+
     func body(content: Content) -> some View {
         Group {
             if isEmpty {

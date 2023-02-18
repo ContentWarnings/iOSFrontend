@@ -18,14 +18,18 @@ struct SearchView: View {
                     .padding(.bottom, 10.0)
                 LazyVStack(spacing: 0) {
                     if searchString == "" {
+                        // Display genre tiles if user hasn't searched yet
                         ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
                             GenreTileView(genre: genre)
                             .padding(.horizontal, 24.0)
                             .padding(.vertical, 6.0)
                         }
                     } else {
+                        // Once user has searched, replace genre tiles with movie tiles
+                        // TODO: Replace with real API data
                         ForEach(MovieReduced.testData) { movie in
                             VStack(spacing: 0) {
+                                // TODO: Make each tile tappable for movie details
                                 SearchMovieTileView(movie: movie)
                                 Separator()
                             }

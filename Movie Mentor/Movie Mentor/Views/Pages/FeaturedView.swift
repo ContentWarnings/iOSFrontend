@@ -8,6 +8,7 @@ struct FeaturedView: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    // TODO: Replace with real API data
     let movies: [MovieReduced] = MovieReduced.testData
 
     var body: some View {
@@ -21,6 +22,7 @@ struct FeaturedView: View {
                     .padding(.horizontal, 22.0)
                 LazyVGrid(columns: columns) {
                     ForEach(movies) { movie in
+                        // TODO: Make each movie tile tappable for details
                         FeaturedMovieTileView(movie: movie)
                     }
                 }

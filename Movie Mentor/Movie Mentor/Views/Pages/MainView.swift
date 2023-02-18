@@ -27,6 +27,7 @@ struct MainView: View {
         }
         .tint(Color("Primary"))
         .onChange(of: selectedTab) { newTab in
+            // Unfocus search bar if leaving search tab
             if newTab != "Search" {
                 searchBarFocused = false
             }

@@ -5,6 +5,7 @@ struct GenreTileView: View {
 
     var body: some View {
         ZStack {
+            // TODO: Replace with different image for each genre
             Image("Action")
                 .resizable()
                 .scaledToFill()

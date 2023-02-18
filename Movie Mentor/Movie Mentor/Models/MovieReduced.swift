@@ -8,8 +8,9 @@ struct MovieReduced: Identifiable {
     var overview: String
     var runtime: Int
     var genres: [String]
-    var cw: [String]
+    var warnings: [String] // TODO: Update to content warning objects
     
+    // Returns a formatted  description string for displaying in search results
     func searchDescriptionString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy"
@@ -35,7 +36,7 @@ extension MovieReduced {
                      genres: ["Adventure",
                              "Science Fiction",
                              "Comedy"],
-                     cw: ["Kidnapping", "Drug Use"]),
+                     warnings: ["Kidnapping", "Drug Use"]),
         MovieReduced(id: 76600,
                      title: "Avatar: The Way of Water",
                      release: Date.now,
@@ -49,7 +50,7 @@ extension MovieReduced {
                      genres: ["Science Fiction",
                              "Adventure",
                              "Action"],
-                     cw: ["Terrorism", "Death"]),
+                     warnings: ["Terrorism", "Death"]),
         MovieReduced(id: 315162,
                      title: "Puss in Boots: The Last Wish",
                      release: Date.now,
@@ -65,7 +66,7 @@ extension MovieReduced {
                              "Comedy",
                              "Family",
                              "Fantasy"],
-                     cw: ["Violence", "Abuse"]),
+                     warnings: ["Violence", "Abuse"]),
         MovieReduced(id: 6401469,
                      title: "Ant-Man and the Wasp: Quantumania",
                      release: Date.now,
@@ -80,7 +81,7 @@ extension MovieReduced {
                      genres: ["Adventure",
                              "Science Fiction",
                              "Comedy"],
-                     cw: ["Kidnapping", "Drug Use"]),
+                     warnings: ["Kidnapping", "Drug Use"]),
         MovieReduced(id: 766009,
                      title: "Avatar: The Way of Water",
                      release: Date.now,
@@ -94,7 +95,7 @@ extension MovieReduced {
                      genres: ["Science Fiction",
                              "Adventure",
                              "Action"],
-                     cw: ["Terrorism", "Death"]),
+                     warnings: ["Terrorism", "Death"]),
         MovieReduced(id: 3151629,
                      title: "Puss in Boots: The Last Wish",
                      release: Date.now,
@@ -110,6 +111,6 @@ extension MovieReduced {
                              "Comedy",
                              "Family",
                              "Fantasy"],
-                     cw: ["Violence", "Abuse"]),
+                     warnings: ["Violence", "Abuse"])
     ]
 }
