@@ -14,7 +14,7 @@ struct SearchView: View {
                 SearchBarView(searchString: $searchString,
                               selectedTab: $selectedTab,
                               searchBarFocused: $searchBarFocused)
-                    .padding(/*@START_MENU_TOKEN@*/.horizontal, 22.0/*@END_MENU_TOKEN@*/)
+                    .padding(.horizontal, 22.0)
                     .padding(.bottom, 10.0)
                 LazyVStack(spacing: 0) {
                     if searchString == "" {
