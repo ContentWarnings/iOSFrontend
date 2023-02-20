@@ -23,7 +23,10 @@ struct FeaturedView: View {
                 LazyVGrid(columns: columns) {
                     ForEach(movies) { movie in
                         // TODO: Make each movie tile tappable for details
-                        FeaturedMovieTileView(movie: movie)
+                        NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
+                            FeaturedMovieTileView(movie: movie)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding([.top, .leading, .trailing])
@@ -34,6 +37,8 @@ struct FeaturedView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedView(selectedTab: .constant("Featured"), searchBarFocused: .constant(false))
+        NavigationView {
+            FeaturedView(selectedTab: .constant("Featured"), searchBarFocused: .constant(false))
+        }
     }
 }

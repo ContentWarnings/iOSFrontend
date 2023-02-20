@@ -29,11 +29,13 @@ struct SearchView: View {
                         // Once user has searched, replace genre tiles with movie tiles
                         // TODO: Replace with real API data
                         ForEach(MovieReduced.testData) { movie in
-                            VStack(spacing: 0) {
-                                // TODO: Make each tile tappable for movie details
-                                SearchMovieTileView(movie: movie)
-                                Separator()
+                            NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
+                                VStack(spacing: 0) {
+                                    SearchMovieTileView(movie: movie)
+                                    Separator()
+                                }
                             }
+                            .buttonStyle(.plain)
                         }
                     }
                 }
@@ -44,7 +46,9 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(selectedTab: .constant("Search"), searchBarFocused: .constant(false))
+        NavigationView {
+            SearchView(selectedTab: .constant("Search"), searchBarFocused: .constant(false))
+        }
     }
 }
 
