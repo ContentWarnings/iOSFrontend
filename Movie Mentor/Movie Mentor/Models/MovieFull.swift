@@ -6,7 +6,7 @@ struct MovieFull: Identifiable {
     var release: Date
     var img: URL
     var mpa: String
-    var rating: Float
+    var rating: Double
     var overview: String
     var runtime: Int
     var genres: [String]

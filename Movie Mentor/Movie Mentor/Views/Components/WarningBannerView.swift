@@ -5,8 +5,8 @@ struct WarningBannerView: View {
         HStack {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.system(size: 36))
-                .padding(.leading, 20)
-                .padding(.trailing, 15)
+                .padding(.leading, 20.0)
+                .padding(.trailing, 15.0)
             VStack(alignment: .leading) {
                 Text("Proceed with caution.")
                     .font(Font.custom("Roboto-Bold", size: 24))
