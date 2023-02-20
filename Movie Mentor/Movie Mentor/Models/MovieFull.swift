@@ -13,6 +13,27 @@ struct MovieFull: Identifiable {
     var warnings: [String] // TODO: Update to content warning objects
     var streamingProviders: [(String, URL)]
     var streamingLink: URL
+    
+    func releaseDateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        return dateFormatter.string(from: self.release)
+    }
+    
+    func runtimeString() -> String {
+        let numHours = self.runtime / 60
+        let numMinutes = self.runtime % 60
+        var str = ""
+        
+        if numHours > 0 {
+            str += numHours.description + "hr "
+        }
+        if numMinutes > 0 {
+            str += numMinutes.description + "min"
+        }
+        
+        return str
+    }
 }
 
 extension MovieFull {
