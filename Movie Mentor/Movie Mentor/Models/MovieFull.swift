@@ -54,9 +54,9 @@ extension MovieFull {
                   genres: ["Adventure", "Science Fiction", "Comedy"],
                   warnings: ["Kidnapping", "Drug Use"],
                   streamingProviders: [
-                    ("Apple TV - rent",
+                    ("Rent",
                      URL(string: "https://image.tmdb.org/t/p/original/peURlLlr8jggOwK53fJ5wdQl05y.jpg")!),
-                    ("Amazon Video - rent",
+                    ("Rent",
                      URL(string: "https://image.tmdb.org/t/p/original/5NyLm42TmCqCMOZFvH4fcoSNKEW.jpg")!)],
                   streamingLink: URL(string:
                     "https://www.themoviedb.org/movie/315162-puss-in-boots-the-last-wish/watch?locale=US")!)
