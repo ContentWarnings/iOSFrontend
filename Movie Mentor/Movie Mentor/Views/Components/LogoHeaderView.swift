@@ -8,13 +8,13 @@ struct LogoHeaderView: View {
             Image(decorative: "Logo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 32.0)
+                .frame(width: 28.0)
             Text(pageTitle)
-                .font(Font.custom("Roboto-Bold", size: 32))
+                .font(Font.custom("Roboto-Bold", size: 28))
                 .padding(.top, 6.0)
             Spacer()
         }
-        .padding(.leading, 24.0)
+        .padding(.leading, 8.0)
     }
 }
 

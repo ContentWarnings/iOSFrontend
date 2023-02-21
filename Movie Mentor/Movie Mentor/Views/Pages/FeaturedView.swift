@@ -14,12 +14,11 @@ struct FeaturedView: View {
     var body: some View {
         ScrollView {
             VStack {
-                LogoHeaderView(pageTitle: "Trending")
-                    .padding(.bottom, -1.0)
                 SearchBarView(searchString: .constant(""),
                               selectedTab: $selectedTab,
                               searchBarFocused: $searchBarFocused)
                     .padding(.horizontal, 22.0)
+                    .padding(.top, 10.0)
                 LazyVGrid(columns: columns) {
                     ForEach(movies) { movie in
                         // TODO: Make each movie tile tappable for details

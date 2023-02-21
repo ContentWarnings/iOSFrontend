@@ -9,13 +9,11 @@ struct SearchView: View {
     var body: some View {
         ScrollView {
             VStack {
-                LogoHeaderView(pageTitle: "Search")
-                    .padding(.bottom, -1.0)
                 SearchBarView(searchString: $searchString,
                               selectedTab: $selectedTab,
                               searchBarFocused: $searchBarFocused)
                     .padding(.horizontal, 22.0)
-                    .padding(.bottom, 10.0)
+                    .padding(.top, 10.0)
                 LazyVStack(spacing: 0) {
                     if searchString == "" {
                         // Display genre tiles if user hasn't searched yet
