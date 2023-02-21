@@ -2,13 +2,24 @@ import SwiftUI
 
 struct GenreTagView: View {
     let genre: String
+    
+    var iconName: String {
+        if (genre == "Science Fiction") {
+            return "SciFi-Icon"
+        } else if (genre == "TV Movie") {
+            return "TVMovie-Icon"
+        } else {
+            return genre + "-Icon"
+        }
+    }
 
     var body: some View {
         HStack {
-            Circle()
-                .frame(width: 10.0, height: 10.0)
-                .foregroundColor(Color("PerfectWhite"))
-                .padding(.leading, 8.0)
+            Image(decorative: iconName)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 14.0)
+                .padding(3.0)
             Text(genre)
                 .font(Font.custom("Roboto-Regular", size: 14))
                 .foregroundColor(Color("PerfectWhite"))
@@ -25,6 +36,10 @@ struct GenreTagView: View {
 
 struct GenreTagView_Previews: PreviewProvider {
     static var previews: some View {
-        GenreTagView(genre: "Action")
+        VStack {
+            ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
+                GenreTagView(genre: genre)
+            }
+        }
     }
 }
