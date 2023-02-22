@@ -7,7 +7,7 @@ struct MovieDetailsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
                 WarningBannerView()
                     .isEmpty(!hasWarning)
                     .padding(.bottom, 24.0)
@@ -37,6 +37,29 @@ struct MovieDetailsView: View {
                 }
                 .frame(height: 260.0)
                 .padding(.horizontal, 25.0)
+                .padding(.bottom)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(movie.streamingProviders, id: \.1) { provider in
+                            StreamingTileView(streamType: provider.0, providerImage: provider.1, streamingLink: movie.streamingLink)
+                        }
+                    }
+                }
+                .padding(.horizontal, 25.0)
+                .padding(.bottom)
+                MPARatingView(rating: movie.mpa)
+                    .padding(.bottom)
+                Text("Summary")
+                    .font(Font.custom("Roboto-Bold", size: 32))
+                    .padding(.horizontal, 25.0)
+                Text(movie.overview)
+                    .font(Font.custom("Roboto-Regular", size: 21))
+                    .padding(.horizontal, 25.0)
+                    .padding(.bottom)
+                Text("Content Warnings")
+                    .font(Font.custom("Roboto-Bold", size: 32))
+                    .padding(.horizontal, 25.0)
+                // TODO: Display content warnings here
             }
         }
         .navigationTitle(movie.title)

@@ -19,7 +19,7 @@ struct GenreTagView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(height: 14.0)
-                .padding(3.0)
+                .padding(.horizontal, 3.0)
             Text(genre)
                 .font(Font.custom("Roboto-Regular", size: 14))
                 .foregroundColor(Color("PerfectWhite"))
