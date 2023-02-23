@@ -2,7 +2,7 @@ import SwiftUI
 
 struct GenreTileView: View {
     @Environment(\.colorScheme) var colorScheme
-    
+
     let genre: String
 
     var body: some View {

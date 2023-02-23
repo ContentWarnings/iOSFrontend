@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MovieDetailsView: View {
     let movie: MovieFull
-    
+
     @State private var hasWarning: Bool = true // TODO: Update with warning check logic
 
     var body: some View {
@@ -41,7 +41,9 @@ struct MovieDetailsView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
                         ForEach(movie.streamingProviders, id: \.1) { provider in
-                            StreamingTileView(streamType: provider.0, providerImage: provider.1, streamingLink: movie.streamingLink)
+                            StreamingTileView(streamType: provider.0,
+                                              providerImage: provider.1,
+                                              streamingLink: movie.streamingLink)
                         }
                     }
                 }

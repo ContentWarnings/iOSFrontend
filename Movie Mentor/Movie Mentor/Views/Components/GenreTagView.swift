@@ -2,11 +2,11 @@ import SwiftUI
 
 struct GenreTagView: View {
     let genre: String
-    
+
     var iconName: String {
-        if (genre == "Science Fiction") {
+        if genre == "Science Fiction" {
             return "SciFi-Icon"
-        } else if (genre == "TV Movie") {
+        } else if genre == "TV Movie" {
             return "TVMovie-Icon"
         } else {
             return genre + "-Icon"
