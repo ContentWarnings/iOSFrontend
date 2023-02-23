@@ -14,16 +14,18 @@ struct FeaturedView: View {
     var body: some View {
         ScrollView {
             VStack {
-                LogoHeaderView(pageTitle: "Trending")
-                    .padding(.bottom, -1.0)
                 SearchBarView(searchString: .constant(""),
                               selectedTab: $selectedTab,
                               searchBarFocused: $searchBarFocused)
                     .padding(.horizontal, 22.0)
+                    .padding(.top, 10.0)
                 LazyVGrid(columns: columns) {
                     ForEach(movies) { movie in
                         // TODO: Make each movie tile tappable for details
-                        FeaturedMovieTileView(movie: movie)
+                        NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
+                            FeaturedMovieTileView(movie: movie)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding([.top, .leading, .trailing])
@@ -34,6 +36,8 @@ struct FeaturedView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedView(selectedTab: .constant("Featured"), searchBarFocused: .constant(false))
+        NavigationView {
+            FeaturedView(selectedTab: .constant("Featured"), searchBarFocused: .constant(false))
+        }
     }
 }

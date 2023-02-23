@@ -9,7 +9,7 @@ struct MovieReduced: Identifiable {
     var runtime: Int
     var genres: [String]
     var warnings: [String] // TODO: Update to content warning objects
-    
+
     // Returns a formatted  description string for displaying in search results
     func searchDescriptionString() -> String {
         let dateFormatter = DateFormatter()
