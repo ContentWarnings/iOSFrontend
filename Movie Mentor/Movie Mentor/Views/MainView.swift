@@ -4,6 +4,18 @@ struct MainView: View {
     @State private var selectedTab = "Featured"
     @State private var searchBarFocused = false
 
+    init(selectedTab: String = "Featured", searchBarFocused: Bool = false) {
+        self.selectedTab = selectedTab
+        self.searchBarFocused = searchBarFocused
+        
+        // Fixes an iOS 15+ bug with navigation bar appearance
+        // Will be updated if I find a better fix
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithDefaultBackground()
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+    }
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             FeaturedView(selectedTab: $selectedTab, searchBarFocused: $searchBarFocused)
