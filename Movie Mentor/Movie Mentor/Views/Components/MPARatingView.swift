@@ -18,7 +18,7 @@ struct MPARatingView: View {
             return "Rating Unknown"
         }
     }
-    
+
     var body: some View {
         HStack {
             Text(rating)

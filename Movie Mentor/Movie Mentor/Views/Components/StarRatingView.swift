@@ -2,7 +2,7 @@ import SwiftUI
 
 struct StarRatingView: View {
     let rating: Double
-    
+
     var body: some View {
         HStack(spacing: 0) {
             if rating < 1.5 {
@@ -10,7 +10,7 @@ struct StarRatingView: View {
             } else {
                 FullStarView()
             }
-            
+
             if rating < 2.5 {
                 EmptyStarView()
             } else if rating < 3.5 {
@@ -18,7 +18,7 @@ struct StarRatingView: View {
             } else {
                 FullStarView()
             }
-            
+
             if rating < 4.5 {
                 EmptyStarView()
             } else if rating < 5.5 {
@@ -26,7 +26,7 @@ struct StarRatingView: View {
             } else {
                 FullStarView()
             }
-            
+
             if rating < 6.5 {
                 EmptyStarView()
             } else if rating < 7.5 {
@@ -34,7 +34,7 @@ struct StarRatingView: View {
             } else {
                 FullStarView()
             }
-            
+
             if rating < 8.5 {
                 EmptyStarView()
             } else if rating < 9.5 {

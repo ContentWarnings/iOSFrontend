@@ -4,7 +4,7 @@ struct StreamingTileView: View {
     let streamType: String
     let providerImage: URL
     let streamingLink: URL
-    
+
     var body: some View {
         Link(destination: streamingLink) {
             VStack {
