@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct GenreTileView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     let genre: String
 
     var body: some View {
@@ -13,10 +15,17 @@ struct GenreTileView: View {
                 .clipped()
                 .cornerRadius(11)
                 .allowsHitTesting(false)
-            Rectangle()
-                .frame(height: 90.0)
-                .foregroundColor(Color("OLEDDark").opacity(0.75))
-                .cornerRadius(11)
+            if colorScheme == .dark {
+                Rectangle()
+                    .frame(height: 90.0)
+                    .foregroundColor(Color("OLEDDark").opacity(0.5))
+                    .cornerRadius(11)
+            } else {
+                Rectangle()
+                    .frame(height: 90.0)
+                    .foregroundColor(Color("OffWhite").opacity(0.25))
+                    .cornerRadius(11)
+            }
             Text(genre)
                 .font(Font.custom("Roboto-Bold", size: 42))
                 .foregroundColor(Color("PerfectWhite"))
