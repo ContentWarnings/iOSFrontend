@@ -46,8 +46,9 @@ struct SettingsRow: View {
                         .foregroundColor(Color("Primary"))
                         .cornerRadius(9)
                 )
-                .padding(.trailing, 5.0)
+                .padding(.trailing, 10.0)
             Text(rowText)
+                .font(Font.custom("Roboto-Regular", size: 21))
         }
     }
 }
