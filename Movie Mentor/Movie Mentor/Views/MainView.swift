@@ -30,7 +30,7 @@ struct MainView: View {
                     Text("Search")
                 }
                 .tag("Search")
-            SettingsView()
+            SettingsView(selectedTab: $selectedTab, searchBarFocused: $searchBarFocused)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                     Text("Setting")
