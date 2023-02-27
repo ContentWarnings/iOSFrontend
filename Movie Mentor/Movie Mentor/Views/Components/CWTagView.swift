@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct CWTagView: View {
-    let warningName: String
+    let warning: ContentWarning
     let shouldWarn: Bool
 
     var body: some View {
-        Text(warningName)
+        Text(warning.name)
             .font(Font.custom("Roboto-Bold", size: 14))
             .foregroundColor(Color("PerfectWhite"))
             .padding(5.0)
@@ -20,8 +20,8 @@ struct CWTagView: View {
 struct CWTagView_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            CWTagView(warningName: "Kidnapping", shouldWarn: true)
-            CWTagView(warningName: "Drug Use", shouldWarn: false)
+            CWTagView(warning: ContentWarning.testData[0], shouldWarn: true)
+            CWTagView(warning: ContentWarning.testData[1], shouldWarn: false)
         }
     }
 }

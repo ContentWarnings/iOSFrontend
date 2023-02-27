@@ -44,9 +44,9 @@ struct SearchMovieTileView: View {
                     .padding(.top, 3.0)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        ForEach(movie.warnings, id: \.self) { warning in
+                        ForEach(movie.warnings) { warning in
                             // TODO: Update with warning check logic
-                            CWTagView(warningName: warning, shouldWarn: false)
+                            CWTagView(warning: warning, shouldWarn: false)
                         }
                     }
                     .frame(height: 20.0)

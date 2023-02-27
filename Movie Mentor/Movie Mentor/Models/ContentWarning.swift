@@ -21,6 +21,6 @@ extension ContentWarning {
         ContentWarning(id: "cc8ea1b8-2155-4e35-97b5-cda4058edabde",
                        name: "Drug Use",
                        times: [(1, 2), (3, 4)],
-                       description: "Blue people use drugs."),
+                       description: "Blue people use drugs.")
     ]
 }
