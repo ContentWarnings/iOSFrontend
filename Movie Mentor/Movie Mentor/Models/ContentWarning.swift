@@ -24,3 +24,11 @@ extension ContentWarning {
                        description: "Blue people use drugs.")
     ]
 }
+
+extension ContentWarning {
+    enum WarningSetting: String {
+        case show = "Show"
+        case warn = "Warn"
+        case hide = "Hide"
+    }
+}
