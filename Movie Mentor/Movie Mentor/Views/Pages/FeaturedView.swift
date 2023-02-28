@@ -12,23 +12,31 @@ struct FeaturedView: View {
     let movies: [MovieReduced] = MovieReduced.testData
 
     var body: some View {
-        ScrollView {
-            VStack {
-                SearchBarView(searchString: .constant(""),
-                              selectedTab: $selectedTab,
-                              searchBarFocused: $searchBarFocused)
-                    .padding(.horizontal, 22.0)
-                    .padding(.top, 10.0)
-                LazyVGrid(columns: columns) {
-                    ForEach(movies) { movie in
-                        // TODO: Make each movie tile tappable for details
-                        NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
-                            FeaturedMovieTileView(movie: movie)
+        NavigationView {
+            ScrollView {
+                VStack {
+                    SearchBarView(searchString: .constant(""),
+                                  selectedTab: $selectedTab,
+                                  searchBarFocused: $searchBarFocused)
+                        .padding(.horizontal, 22.0)
+                        .padding(.top, 10.0)
+                    LazyVGrid(columns: columns) {
+                        ForEach(movies) { movie in
+                            // TODO: Make each movie tile tappable for details
+                            NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
+                                FeaturedMovieTileView(movie: movie)
+                            }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
                     }
+                    .padding([.top, .leading, .trailing])
                 }
-                .padding([.top, .leading, .trailing])
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    LogoHeaderView(pageTitle: selectedTab)
+                }
             }
         }
     }

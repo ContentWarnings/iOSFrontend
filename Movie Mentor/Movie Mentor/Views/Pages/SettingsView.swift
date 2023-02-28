@@ -5,22 +5,30 @@ struct SettingsView: View {
     @Binding var searchBarFocused: Bool
 
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                VStack {
-                    SearchBarView(searchString: .constant(""),
-                                  selectedTab: $selectedTab,
-                                  searchBarFocused: $searchBarFocused)
-                    .padding(.horizontal, 22.0)
-                    .padding(.top, 10.0)
-                    List {
-                        NavigationLink(destination: WarningSettingsView()) {
-                            SettingsRow(imageName: "exclamationmark.triangle.fill", rowText: "Content Warnings")
+        NavigationView {
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack {
+                        SearchBarView(searchString: .constant(""),
+                                      selectedTab: $selectedTab,
+                                      searchBarFocused: $searchBarFocused)
+                        .padding(.horizontal, 22.0)
+                        .padding(.top, 10.0)
+                        List {
+                            NavigationLink(destination: WarningSettingsView()) {
+                                SettingsRow(imageName: "exclamationmark.triangle.fill", rowText: "Content Warnings")
+                            }
+                            SettingsRow(imageName: "info.circle.fill", rowText: "About")
                         }
-                        SettingsRow(imageName: "info.circle.fill", rowText: "About")
+                        .frame(height: geometry.size.height - 60)
+                        .environment(\.defaultMinListRowHeight, 50.0)
                     }
-                    .frame(height: geometry.size.height - 60)
-                    .environment(\.defaultMinListRowHeight, 50.0)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    LogoHeaderView(pageTitle: selectedTab)
                 }
             }
         }

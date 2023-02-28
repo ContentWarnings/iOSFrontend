@@ -7,35 +7,43 @@ struct SearchView: View {
     @State private var searchString = ""
 
     var body: some View {
-        ScrollView {
-            VStack {
-                SearchBarView(searchString: $searchString,
-                              selectedTab: $selectedTab,
-                              searchBarFocused: $searchBarFocused)
-                    .padding(.horizontal, 22.0)
-                    .padding(.top, 10.0)
-                LazyVStack(spacing: 0) {
-                    if searchString == "" {
-                        // Display genre tiles if user hasn't searched yet
-                        ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
-                            // TODO: Make each tile tappable to search genre
-                            GenreTileView(genre: genre)
-                            .padding(.horizontal, 24.0)
-                            .padding(.vertical, 6.0)
-                        }
-                    } else {
-                        // Once user has searched, replace genre tiles with movie tiles
-                        // TODO: Replace with real API data
-                        ForEach(MovieReduced.testData) { movie in
-                            NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
-                                VStack(spacing: 0) {
-                                    SearchMovieTileView(movie: movie)
-                                    Separator()
-                                }
+        NavigationView {
+            ScrollView {
+                VStack {
+                    SearchBarView(searchString: $searchString,
+                                  selectedTab: $selectedTab,
+                                  searchBarFocused: $searchBarFocused)
+                        .padding(.horizontal, 22.0)
+                        .padding(.top, 10.0)
+                    LazyVStack(spacing: 0) {
+                        if searchString == "" {
+                            // Display genre tiles if user hasn't searched yet
+                            ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
+                                // TODO: Make each tile tappable to search genre
+                                GenreTileView(genre: genre)
+                                .padding(.horizontal, 24.0)
+                                .padding(.vertical, 6.0)
                             }
-                            .buttonStyle(.plain)
+                        } else {
+                            // Once user has searched, replace genre tiles with movie tiles
+                            // TODO: Replace with real API data
+                            ForEach(MovieReduced.testData) { movie in
+                                NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
+                                    VStack(spacing: 0) {
+                                        SearchMovieTileView(movie: movie)
+                                        Separator()
+                                    }
+                                }
+                                .buttonStyle(.plain)
+                            }
                         }
                     }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    LogoHeaderView(pageTitle: selectedTab)
                 }
             }
         }

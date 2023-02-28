@@ -44,12 +44,6 @@ struct MainView: View {
                 searchBarFocused = false
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                LogoHeaderView(pageTitle: selectedTab)
-            }
-        }
     }
 }
 
