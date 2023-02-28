@@ -14,10 +14,13 @@ struct SettingsView: View {
                     .padding(.horizontal, 22.0)
                     .padding(.top, 10.0)
                     List {
-                        SettingsRow(imageName: "exclamationmark.triangle.fill", rowText: "Content Warnings")
+                        NavigationLink(destination: WarningSettingsView()) {
+                            SettingsRow(imageName: "exclamationmark.triangle.fill", rowText: "Content Warnings")
+                        }
                         SettingsRow(imageName: "info.circle.fill", rowText: "About")
                     }
                     .frame(height: geometry.size.height - 60)
+                    .environment(\.defaultMinListRowHeight, 50.0)
                 }
             }
         }
