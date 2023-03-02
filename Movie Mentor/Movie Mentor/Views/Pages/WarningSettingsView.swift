@@ -1,8 +1,12 @@
 import SwiftUI
 
 struct WarningSettingsView: View {
-    let warningsList: [ContentWarning] = ContentWarning.testData // TODO: Replace with full list
     let userDefaults = UserDefaults.standard
+    var warningsList: [ContentWarning] {
+        return ContentWarning.testData.sorted { // TODO: Replace with full list from API
+            $0.name < $1.name
+        }
+    }
     var listHeight: CGFloat {
         return 50.0 * CGFloat(warningsList.count) + 75.0
     }
