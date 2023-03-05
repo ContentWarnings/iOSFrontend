@@ -30,6 +30,25 @@ struct WarningSettingsView: View {
                                 .opacity(0.5)
                         }
                         .font(Font.custom("Roboto-Regular", size: 21))
+                        .swipeActions {
+                            Button("Hide") {
+                                userDefaults.set(ContentWarning.WarningSetting.hide.rawValue, forKey: warning.name)
+                                refresh.toggle()
+                            }
+                            .tint(Color("HideAction"))
+
+                            Button("Warn") {
+                                userDefaults.set(ContentWarning.WarningSetting.warn.rawValue, forKey: warning.name)
+                                refresh.toggle()
+                            }
+                            .tint(Color("Secondary"))
+
+                            Button("Show") {
+                                userDefaults.set(ContentWarning.WarningSetting.show.rawValue, forKey: warning.name)
+                                refresh.toggle()
+                            }
+                            .tint(Color("ShowAction"))
+                        }
                     }
                 }
                 .frame(minHeight: listHeight)
