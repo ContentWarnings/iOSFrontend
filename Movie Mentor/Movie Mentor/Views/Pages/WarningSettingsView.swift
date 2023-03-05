@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct WarningSettingsView: View {
+    @State private var searchString = ""
+    @State private var refresh: Bool = false
+
     let userDefaults = UserDefaults.standard
     var warningsList: [ContentWarning] {
         return ContentWarning.testData.sorted { // TODO: Replace with full list from API
@@ -14,13 +17,12 @@ struct WarningSettingsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                SearchBarView(searchString: .constant(""),
-                              selectedTab: .constant(""),
-                              searchBarFocused: .constant(false))
+                SettingsSearchBarView(searchString: $searchString)
                 .padding(.horizontal, 22.0)
                 .padding(.top, 10.0)
                 List(warningsList) { warning in
-                    NavigationLink(destination: Text("Test")) {
+                    NavigationLink(destination: IndividualSettingView(refreshParent: $refresh,
+                                                                      warningName: warning.name)) {
                         HStack {
                             Text(warning.name)
                             Spacer()
@@ -34,6 +36,8 @@ struct WarningSettingsView: View {
                 .environment(\.defaultMinListRowHeight, 50.0)
             }
         }
+        .onChange(of: refresh) { _ in }
+        .navigationTitle("Content Warnings")
     }
 }
 
