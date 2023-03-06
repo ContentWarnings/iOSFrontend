@@ -1,10 +1,27 @@
 import Foundation
 
-struct ContentWarning: Identifiable {
+struct ContentWarning: Identifiable, Comparable {
     var id: String
     var name: String
     var times: [(Int, Int)]
     var description: String
+
+    static func < (lhs: ContentWarning, rhs: ContentWarning) -> Bool {
+        let firstShouldWarn = lhs.shouldWarn()
+        let secondShouldWarn = rhs.shouldWarn()
+
+        if firstShouldWarn && !secondShouldWarn {
+            return true
+        } else if !firstShouldWarn && secondShouldWarn {
+            return false
+        } else {
+            return lhs.name < rhs.name
+        }
+    }
+
+    static func == (lhs: ContentWarning, rhs: ContentWarning) -> Bool {
+        return lhs.id == rhs.id
+    }
 
     func shouldHide() -> Bool {
         return UserDefaults.standard.string(forKey: self.name) == ContentWarning.WarningSetting.hide.rawValue

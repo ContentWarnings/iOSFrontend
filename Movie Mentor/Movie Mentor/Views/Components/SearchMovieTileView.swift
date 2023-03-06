@@ -49,19 +49,7 @@ struct SearchMovieTileView: View {
                     .padding(.top, 3.0)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        ForEach(movie.warnings.sorted {
-                            // Sort warnings alphabetically with 'warn' warnings first
-                            let firstShouldWarn = $0.shouldWarn()
-                            let secondShouldWarn = $1.shouldWarn()
-
-                            if firstShouldWarn && !secondShouldWarn {
-                                return true
-                            } else if !firstShouldWarn && secondShouldWarn {
-                                return false
-                            } else {
-                                return $0.name < $1.name
-                            }
-                        }) { warning in
+                        ForEach(movie.warnings.sorted()) { warning in
                             CWTagView(settingsChanged: $settingsChanged, warning: warning)
                         }
                     }
