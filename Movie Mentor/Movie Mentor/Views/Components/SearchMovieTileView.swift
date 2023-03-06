@@ -1,13 +1,15 @@
 import SwiftUI
 
 struct SearchMovieTileView: View {
+    @Binding var settingsChanged: Bool
+
     let movie: MovieReduced
 
     var hasWarning: Bool {
         return movie.shouldWarn()
     }
 
-    // TODO: Refresh view on settings change
+    // TODO: Make view bigger to show more description
     var body: some View {
         HStack {
             // TODO: Replace with Kingfisher image
@@ -48,7 +50,8 @@ struct SearchMovieTileView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
                         ForEach(movie.warnings) { warning in
-                            CWTagView(warning: warning)
+                            // TODO: Show 'warn' warnings first
+                            CWTagView(settingsChanged: $settingsChanged, warning: warning)
                         }
                     }
                     .frame(height: 20.0)
@@ -65,6 +68,6 @@ struct SearchMovieTileView: View {
 
 struct SearchMovieTileView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchMovieTileView(movie: MovieReduced.testData[2])
+        SearchMovieTileView(settingsChanged: .constant(false), movie: MovieReduced.testData[2])
     }
 }

@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct CWTagView: View {
+    @Binding var settingsChanged: Bool
+
     let warning: ContentWarning
     var shouldWarn: Bool {
         return UserDefaults.standard.string(forKey: warning.name) == ContentWarning.WarningSetting.warn.rawValue
@@ -16,11 +18,12 @@ struct CWTagView: View {
                     .frame(height: 20.0)
                     .foregroundColor(shouldWarn ? Color("Secondary") : Color("OffBlack"))
             )
+            .onChange(of: settingsChanged) { _ in }
     }
 }
 
 struct CWTagView_Previews: PreviewProvider {
     static var previews: some View {
-        CWTagView(warning: ContentWarning.testData[0])
+        CWTagView(settingsChanged: .constant(true), warning: ContentWarning.testData[0])
     }
 }

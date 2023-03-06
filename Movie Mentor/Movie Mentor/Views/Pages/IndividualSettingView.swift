@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct IndividualSettingView: View {
-    @Binding var refreshParent: Bool
+    @Binding var settingsChanged: Bool
 
     private var showToggle: Binding<Bool> { Binding(
         get: { UserDefaults.standard.string(forKey: warningName) == ContentWarning.WarningSetting.show.rawValue
@@ -14,7 +14,7 @@ struct IndividualSettingView: View {
                 UserDefaults.standard.set(ContentWarning.WarningSetting.hide.rawValue, forKey: warningName)
             }
 
-            refreshParent.toggle()
+            settingsChanged.toggle()
         })
     }
     private var warnToggle: Binding<Bool> { Binding(
@@ -26,7 +26,7 @@ struct IndividualSettingView: View {
                 UserDefaults.standard.set(ContentWarning.WarningSetting.show.rawValue, forKey: warningName)
             }
 
-            refreshParent.toggle()
+            settingsChanged.toggle()
         })
     }
 
@@ -72,7 +72,7 @@ struct IndividualSettingView: View {
 struct IndividualSettingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            IndividualSettingView(refreshParent: .constant(false), warningName: "Drug Use")
+            IndividualSettingView(settingsChanged: .constant(false), warningName: "Drug Use")
         }
     }
 }

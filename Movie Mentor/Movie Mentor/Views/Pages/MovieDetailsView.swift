@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
+    @Binding var settingsChanged: Bool
+
     let movie: MovieFull
 
     var shouldWarn: Bool {
         return movie.shouldWarn()
     }
 
-    // TODO: Refresh view on settings change
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -68,13 +69,14 @@ struct MovieDetailsView: View {
             }
         }
         .navigationTitle(movie.title)
+        .onChange(of: settingsChanged) { _ in }
     }
 }
 
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MovieDetailsView(movie: MovieFull.testData)
+            MovieDetailsView(settingsChanged: .constant(false), movie: MovieFull.testData)
         }
     }
 }

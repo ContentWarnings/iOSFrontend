@@ -3,6 +3,7 @@ import SwiftUI
 struct SearchView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
+    @Binding var settingsChanged: Bool
 
     @State private var searchString = ""
 
@@ -30,9 +31,10 @@ struct SearchView: View {
                             // TODO: Replace with real API data
                             ForEach(MovieReduced.testData) { movie in
                                 if !movie.shouldHide() {
-                                    NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
+                                    NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
+                                                                                 movie: MovieFull.testData)) {
                                         VStack(spacing: 0) {
-                                            SearchMovieTileView(movie: movie)
+                                            SearchMovieTileView(settingsChanged: $settingsChanged, movie: movie)
                                             Separator()
                                         }
                                     }
@@ -56,7 +58,9 @@ struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SearchView(selectedTab: .constant("Search"), searchBarFocused: .constant(false))
+            SearchView(selectedTab: .constant("Search"),
+                       searchBarFocused: .constant(false),
+                       settingsChanged: .constant(false))
         }
     }
 }

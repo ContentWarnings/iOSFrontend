@@ -2,7 +2,7 @@ import SwiftUI
 
 struct WarningSettingsView: View {
     @State private var searchString = ""
-    @State private var refresh: Bool = false
+    @Binding var settingsChanged: Bool
 
     let userDefaults = UserDefaults.standard
     var warningsList: [ContentWarning] {
@@ -21,7 +21,7 @@ struct WarningSettingsView: View {
                 .padding(.horizontal, 22.0)
                 .padding(.top, 10.0)
                 List(warningsList) { warning in
-                    NavigationLink(destination: IndividualSettingView(refreshParent: $refresh,
+                    NavigationLink(destination: IndividualSettingView(settingsChanged: $settingsChanged,
                                                                       warningName: warning.name)) {
                         HStack {
                             Text(warning.name)
@@ -33,19 +33,19 @@ struct WarningSettingsView: View {
                         .swipeActions {
                             Button("Hide") {
                                 userDefaults.set(ContentWarning.WarningSetting.hide.rawValue, forKey: warning.name)
-                                refresh.toggle()
+                                settingsChanged.toggle()
                             }
                             .tint(Color("HideAction"))
 
                             Button("Warn") {
                                 userDefaults.set(ContentWarning.WarningSetting.warn.rawValue, forKey: warning.name)
-                                refresh.toggle()
+                                settingsChanged.toggle()
                             }
                             .tint(Color("Secondary"))
 
                             Button("Show") {
                                 userDefaults.set(ContentWarning.WarningSetting.show.rawValue, forKey: warning.name)
-                                refresh.toggle()
+                                settingsChanged.toggle()
                             }
                             .tint(Color("ShowAction"))
                         }
@@ -55,7 +55,7 @@ struct WarningSettingsView: View {
                 .environment(\.defaultMinListRowHeight, 50.0)
             }
         }
-        .onChange(of: refresh) { _ in }
+        .onChange(of: settingsChanged) { _ in }
         .navigationTitle("Content Warnings")
     }
 }
@@ -63,7 +63,7 @@ struct WarningSettingsView: View {
 struct WarningSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            WarningSettingsView()
+            WarningSettingsView(settingsChanged: .constant(false))
         }
     }
 }

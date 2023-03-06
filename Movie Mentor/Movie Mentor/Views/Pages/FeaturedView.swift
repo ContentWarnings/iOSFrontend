@@ -3,6 +3,7 @@ import SwiftUI
 struct FeaturedView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
+    @Binding var settingsChanged: Bool
 
     let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -22,7 +23,8 @@ struct FeaturedView: View {
                         .padding(.top, 10.0)
                     LazyVGrid(columns: columns) {
                         ForEach(movies) { movie in
-                            NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
+                            NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
+                                                                         movie: MovieFull.testData)) {
                                 FeaturedMovieTileView(movie: movie)
                             }
                             .buttonStyle(.plain)
@@ -44,7 +46,9 @@ struct FeaturedView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FeaturedView(selectedTab: .constant("Featured"), searchBarFocused: .constant(false))
+            FeaturedView(selectedTab: .constant("Featured"),
+                         searchBarFocused: .constant(false),
+                         settingsChanged: .constant(false))
         }
     }
 }
