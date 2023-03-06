@@ -5,7 +5,7 @@ struct CWTagView: View {
 
     let warning: ContentWarning
     var shouldWarn: Bool {
-        return UserDefaults.standard.string(forKey: warning.name) == ContentWarning.WarningSetting.warn.rawValue
+        return warning.shouldWarn()
     }
 
     var body: some View {

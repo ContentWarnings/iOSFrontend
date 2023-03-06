@@ -5,6 +5,14 @@ struct ContentWarning: Identifiable {
     var name: String
     var times: [(Int, Int)]
     var description: String
+
+    func shouldHide() -> Bool {
+        return UserDefaults.standard.string(forKey: self.name) == ContentWarning.WarningSetting.hide.rawValue
+    }
+
+    func shouldWarn() -> Bool {
+        return UserDefaults.standard.string(forKey: self.name) == ContentWarning.WarningSetting.warn.rawValue
+    }
 }
 
 extension ContentWarning {
