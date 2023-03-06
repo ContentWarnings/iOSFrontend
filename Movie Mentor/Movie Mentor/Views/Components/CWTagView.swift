@@ -2,7 +2,9 @@ import SwiftUI
 
 struct CWTagView: View {
     let warning: ContentWarning
-    let shouldWarn: Bool
+    var shouldWarn: Bool {
+        return UserDefaults.standard.string(forKey: warning.name) == ContentWarning.WarningSetting.warn.rawValue
+    }
 
     var body: some View {
         Text(warning.name)
@@ -19,9 +21,6 @@ struct CWTagView: View {
 
 struct CWTagView_Previews: PreviewProvider {
     static var previews: some View {
-        HStack {
-            CWTagView(warning: ContentWarning.testData[0], shouldWarn: true)
-            CWTagView(warning: ContentWarning.testData[1], shouldWarn: false)
-        }
+        CWTagView(warning: ContentWarning.testData[0])
     }
 }

@@ -7,6 +7,7 @@ struct MovieDetailsView: View {
         return movie.shouldWarn()
     }
 
+    // TODO: Refresh view on settings change
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {

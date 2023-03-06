@@ -3,8 +3,11 @@ import SwiftUI
 struct SearchMovieTileView: View {
     let movie: MovieReduced
 
-    @State private var hasWarning: Bool = true // TODO: Update with warning check logic
+    var hasWarning: Bool {
+        return movie.shouldWarn()
+    }
 
+    // TODO: Refresh view on settings change
     var body: some View {
         HStack {
             // TODO: Replace with Kingfisher image
@@ -45,8 +48,7 @@ struct SearchMovieTileView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
                         ForEach(movie.warnings) { warning in
-                            // TODO: Update with warning check logic
-                            CWTagView(warning: warning, shouldWarn: false)
+                            CWTagView(warning: warning)
                         }
                     }
                     .frame(height: 20.0)
