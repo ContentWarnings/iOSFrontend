@@ -52,7 +52,9 @@ struct SettingsSearchBarView: View {
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SearchBarView(searchString: .constant(""), selectedTab: .constant("Search"), searchBarFocused: .constant(false))
+            SearchBarView(searchString: .constant(""),
+                          selectedTab: .constant("Search"),
+                          searchBarFocused: .constant(false))
                 .frame(width: 343.0, height: 37.0)
             SettingsSearchBarView(searchString: .constant(""))
                 .frame(width: 343.0, height: 37.0)

@@ -6,6 +6,7 @@ struct SearchView: View {
 
     @State private var searchString = ""
 
+    // TODO: Add view for no more search results
     var body: some View {
         NavigationView {
             ScrollView {
@@ -28,13 +29,15 @@ struct SearchView: View {
                             // Once user has searched, replace genre tiles with movie tiles
                             // TODO: Replace with real API data
                             ForEach(MovieReduced.testData) { movie in
-                                NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
-                                    VStack(spacing: 0) {
-                                        SearchMovieTileView(movie: movie)
-                                        Separator()
+                                if !movie.shouldHide() {
+                                    NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
+                                        VStack(spacing: 0) {
+                                            SearchMovieTileView(movie: movie)
+                                            Separator()
+                                        }
                                     }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                     }
