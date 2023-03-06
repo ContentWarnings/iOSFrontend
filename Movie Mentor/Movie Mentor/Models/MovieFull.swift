@@ -34,6 +34,28 @@ struct MovieFull: Identifiable {
 
         return str
     }
+
+    func shouldHide() -> Bool {
+        let userDefaults = UserDefaults.standard
+
+        for warning in self.warnings where userDefaults.string(forKey: warning.name) ==
+        ContentWarning.WarningSetting.hide.rawValue {
+            return true
+        }
+
+        return false
+    }
+
+    func shouldWarn() -> Bool {
+        let userDefaults = UserDefaults.standard
+
+        for warning in self.warnings where userDefaults.string(forKey: warning.name) ==
+        ContentWarning.WarningSetting.warn.rawValue {
+            return true
+        }
+
+        return false
+    }
 }
 
 extension MovieFull {

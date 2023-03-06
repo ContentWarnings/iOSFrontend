@@ -22,7 +22,6 @@ struct FeaturedView: View {
                         .padding(.top, 10.0)
                     LazyVGrid(columns: columns) {
                         ForEach(movies) { movie in
-                            // TODO: Make each movie tile tappable for details
                             NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
                                 FeaturedMovieTileView(movie: movie)
                             }

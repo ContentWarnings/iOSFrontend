@@ -3,14 +3,15 @@ import SwiftUI
 struct MovieDetailsView: View {
     let movie: MovieFull
 
-    @State private var hasWarning: Bool = true // TODO: Update with warning check logic
+    var shouldWarn: Bool {
+        return movie.shouldWarn()
+    }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 WarningBannerView()
-                    .isEmpty(!hasWarning)
-                    .padding(.bottom, 24.0)
+                    .isEmpty(!shouldWarn)
                 HStack(alignment: .top) {
                     // TODO: Replace with Kingfisher image
                     AsyncImage(url: movie.img) { image in
@@ -36,6 +37,7 @@ struct MovieDetailsView: View {
                     }
                 }
                 .frame(height: 260.0)
+                .padding(.top, 24.0)
                 .padding(.horizontal, 25.0)
                 .padding(.bottom)
                 ScrollView(.horizontal, showsIndicators: false) {
