@@ -3,19 +3,9 @@ import SwiftUI
 struct GenreTagView: View {
     let genre: String
 
-    var iconName: String {
-        if genre == "Science Fiction" {
-            return "SciFi-Icon"
-        } else if genre == "TV Movie" {
-            return "TVMovie-Icon"
-        } else {
-            return genre + "-Icon"
-        }
-    }
-
     var body: some View {
         HStack {
-            Image(decorative: iconName)
+            Image(genre.replacingOccurrences(of: " ", with: "") + "-Icon")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 14.0)
