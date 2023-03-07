@@ -7,7 +7,6 @@ struct SearchView: View {
 
     @State private var searchString = ""
 
-    // TODO: Add view for no more search results
     var body: some View {
         NavigationView {
             ScrollView {
@@ -41,6 +40,7 @@ struct SearchView: View {
                                     .buttonStyle(.plain)
                                 }
                             }
+                            SearchMovieTileView.FinalSearchTile()
                         }
                     }
                 }

@@ -64,6 +64,19 @@ struct SearchMovieTileView: View {
 
 struct SearchMovieTileView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchMovieTileView(settingsChanged: .constant(false), movie: MovieReduced.testData[2])
+        VStack {
+            SearchMovieTileView(settingsChanged: .constant(false), movie: MovieReduced.testData[2])
+            SearchMovieTileView.FinalSearchTile()
+        }
+    }
+}
+
+extension SearchMovieTileView {
+    struct FinalSearchTile: View {
+        var body: some View {
+            Text("No More Search Results")
+                .font(Font.custom("Roboto-Bold", size: 30))
+                .padding()
+        }
     }
 }
