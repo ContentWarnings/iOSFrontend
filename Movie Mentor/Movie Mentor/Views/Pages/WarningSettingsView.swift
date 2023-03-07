@@ -55,7 +55,7 @@ struct WarningSettingsView: View {
                 .environment(\.defaultMinListRowHeight, 50.0)
             }
         }
-        .onChange(of: settingsChanged) { _ in }
+        .onChange(of: settingsChanged) { _ in } // Used to refresh view on settings change
         .navigationTitle("Content Warnings")
     }
 }

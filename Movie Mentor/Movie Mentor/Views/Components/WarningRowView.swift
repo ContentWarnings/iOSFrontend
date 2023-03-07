@@ -32,7 +32,7 @@ struct WarningRowView: View {
             RoundedRectangle(cornerRadius: 11)
                 .foregroundColor(colorScheme == .dark ? Color("Dark") : Color("Light"))
         }
-        .onChange(of: settingsChanged) { _ in }
+        .onChange(of: settingsChanged) { _ in } // Used to refresh view on settings change
     }
 }
 

@@ -5,7 +5,6 @@ struct SearchMovieTileView: View {
 
     let movie: MovieReduced
 
-    // TODO: Make view bigger to show more description
     var body: some View {
         HStack {
             // TODO: Replace with Kingfisher image
@@ -58,7 +57,7 @@ struct SearchMovieTileView: View {
         .frame(height: 130.0)
         .padding(.horizontal, 24.0)
         .padding(.vertical, 10.0)
-        .onChange(of: settingsChanged) { _ in }
+        .onChange(of: settingsChanged) { _ in } // Used to refresh view on settings change
     }
 }
 

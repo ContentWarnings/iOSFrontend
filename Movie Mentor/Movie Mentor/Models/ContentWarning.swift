@@ -6,6 +6,7 @@ struct ContentWarning: Identifiable, Comparable {
     var times: [(Int, Int)]
     var description: String
 
+    // Sorted alphabetically with 'warn' warnings first
     static func < (lhs: ContentWarning, rhs: ContentWarning) -> Bool {
         let firstShouldWarn = lhs.shouldWarn()
         let secondShouldWarn = rhs.shouldWarn()
@@ -23,6 +24,7 @@ struct ContentWarning: Identifiable, Comparable {
         return lhs.id == rhs.id
     }
 
+    // Returns a formatted string for a given pair of start and end times
     static func timeString(startTime: Int, endTime: Int) -> String {
         let startHour = startTime / 60
         let startMinute = String(format: "%02d", startTime % 60)
@@ -40,6 +42,7 @@ struct ContentWarning: Identifiable, Comparable {
         return UserDefaults.standard.string(forKey: self.name) == ContentWarning.WarningSetting.warn.rawValue
     }
 
+    // Returns a formatted string for use in MovieDetailsView
     func timeSummaryString() -> String {
         if times.count > 1 {
             return "Multiple Instances"
@@ -48,6 +51,7 @@ struct ContentWarning: Identifiable, Comparable {
         }
     }
 
+    // Returns a formatted string for all times for use in WarningDetailsView
     func allTimesString() -> String {
         var res = ""
 

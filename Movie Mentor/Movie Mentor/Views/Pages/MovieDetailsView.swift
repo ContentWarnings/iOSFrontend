@@ -74,7 +74,7 @@ struct MovieDetailsView: View {
             }
         }
         .navigationTitle(movie.title)
-        .onChange(of: settingsChanged) { _ in }
+        .onChange(of: settingsChanged) { _ in } // Used to refresh view on settings change
     }
 }
 

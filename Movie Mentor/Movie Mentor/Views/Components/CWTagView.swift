@@ -15,7 +15,7 @@ struct CWTagView: View {
                     .frame(height: 20.0)
                     .foregroundColor(warning.shouldWarn() ? Color("Secondary") : Color("OffBlack"))
             )
-            .onChange(of: settingsChanged) { _ in }
+            .onChange(of: settingsChanged) { _ in } // Used to refresh view on settings change
     }
 }
 

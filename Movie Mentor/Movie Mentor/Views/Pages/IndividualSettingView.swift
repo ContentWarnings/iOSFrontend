@@ -3,6 +3,7 @@ import SwiftUI
 struct IndividualSettingView: View {
     @Binding var settingsChanged: Bool
 
+    // Binding bool used for first toggle to toggle 'show' vs 'hide
     private var showToggle: Binding<Bool> { Binding(
         get: { UserDefaults.standard.string(forKey: warningName) == ContentWarning.WarningSetting.show.rawValue
             || UserDefaults.standard.string(forKey: warningName) == ContentWarning.WarningSetting.warn.rawValue
@@ -17,6 +18,8 @@ struct IndividualSettingView: View {
             settingsChanged.toggle()
         })
     }
+
+    // Binding bool used for second toggle to toggle 'warn' vs 'show'
     private var warnToggle: Binding<Bool> { Binding(
         get: { UserDefaults.standard.string(forKey: warningName) == ContentWarning.WarningSetting.warn.rawValue },
         set: {
