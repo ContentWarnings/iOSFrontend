@@ -41,7 +41,7 @@ struct SearchMovieTileView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(Font.custom("Roboto-Regular", size: 16))
                     .opacity(0.5)
-                    .lineLimit(1)
+                    .lineLimit(3)
                     .padding(.top, 3.0)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
@@ -55,7 +55,7 @@ struct SearchMovieTileView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .frame(height: 95.0)
+        .frame(height: 130.0)
         .padding(.horizontal, 24.0)
         .padding(.vertical, 10.0)
         .onChange(of: settingsChanged) { _ in }
