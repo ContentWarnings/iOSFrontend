@@ -47,6 +47,16 @@ struct ContentWarning: Identifiable, Comparable {
             return ContentWarning.timeString(startTime: self.times[0].0, endTime: self.times[0].1)
         }
     }
+
+    func allTimesString() -> String {
+        var res = ""
+
+        for time in times {
+            res += ContentWarning.timeString(startTime: time.0, endTime: time.1) + "\n"
+        }
+
+        return res
+    }
 }
 
 extension ContentWarning {

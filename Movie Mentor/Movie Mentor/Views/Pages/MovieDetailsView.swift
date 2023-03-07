@@ -64,8 +64,11 @@ struct MovieDetailsView: View {
                     .padding(.bottom, 6.0)
                 LazyVStack {
                     ForEach(movie.warnings.sorted()) { warning in
-                        WarningRowView(settingsChanged: $settingsChanged, warning: warning)
-                            .padding(.horizontal, 25.0)
+                        NavigationLink(destination: WarningDetailsView(warning: warning)) {
+                            WarningRowView(settingsChanged: $settingsChanged, warning: warning)
+                                .padding(.horizontal, 25.0)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }
