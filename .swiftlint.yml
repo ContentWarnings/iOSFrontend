@@ -1,2 +1,5 @@
+excluded:
+  - Movie Mentor/Pods
+
 type_name:
   allowed_symbols: "_"
