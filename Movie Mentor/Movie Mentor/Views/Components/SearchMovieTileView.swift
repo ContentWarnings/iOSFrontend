@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 struct SearchMovieTileView: View {
@@ -7,14 +8,13 @@ struct SearchMovieTileView: View {
 
     var body: some View {
         HStack {
-            // TODO: Replace with Kingfisher image
-            AsyncImage(url: movie.img) { image in
-                image.resizable().scaledToFit()
-            } placeholder: {
-                ProgressView()
-                    .frame(width: 62.0)
-            }
-            .cornerRadius(4)
+            KFImage(movie.img)
+                .placeholder {
+                    ProgressView()
+                }
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(4)
             VStack(spacing: 0) {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")

@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 struct StreamingTileView: View {
@@ -8,15 +9,14 @@ struct StreamingTileView: View {
     var body: some View {
         Link(destination: streamingLink) {
             VStack {
-                // TODO: Replace with Kingfisher image
-                AsyncImage(url: providerImage) { image in
-                    image.resizable().scaledToFit()
-                } placeholder: {
-                    ProgressView()
-                        .frame(width: 60.0, height: 60.0)
-                }
-                .frame(width: 60.0, height: 60.0)
-                .cornerRadius(12)
+                KFImage(providerImage)
+                    .placeholder {
+                        ProgressView()
+                    }
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 60.0, height: 60.0)
+                    .cornerRadius(12)
                 Text(streamType)
                     .font(Font.custom("Roboto-Regular", size: 16))
                     .foregroundColor(.primary)

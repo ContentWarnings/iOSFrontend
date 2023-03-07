@@ -1,5 +1,4 @@
 // https://medium.com/macoclock/conditional-views-in-swiftui-dc09c808bc30
-// TODO: Properly cite source
 
 import SwiftUI
 

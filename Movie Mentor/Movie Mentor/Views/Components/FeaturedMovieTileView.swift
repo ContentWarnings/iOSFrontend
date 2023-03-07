@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 struct FeaturedMovieTileView: View {
@@ -5,14 +6,14 @@ struct FeaturedMovieTileView: View {
 
     var body: some View {
         VStack {
-            // TODO: Replace with Kingfisher image
-            AsyncImage(url: movie.img) { image in
-                image.resizable().scaledToFit()
-            } placeholder: {
-                ProgressView()
-            }
-            .frame(height: 240.0)
-            .cornerRadius(14.0)
+            KFImage(movie.img)
+                .placeholder {
+                    ProgressView()
+                }
+                .resizable()
+                .scaledToFit()
+                .frame(height: 240.0)
+                .cornerRadius(14)
             Text(movie.title)
                 .font(Font.custom("Roboto-Medium", size: 22))
                 .lineLimit(2)
