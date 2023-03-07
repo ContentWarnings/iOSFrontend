@@ -23,11 +23,13 @@ struct FeaturedView: View {
                         .padding(.top, 10.0)
                     LazyVGrid(columns: columns) {
                         ForEach(movies) { movie in
-                            NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
-                                                                         movie: MovieFull.testData)) {
-                                FeaturedMovieTileView(movie: movie)
+                            if !movie.shouldHide() {
+                                NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
+                                                                             movie: MovieFull.testData)) {
+                                    FeaturedMovieTileView(movie: movie)
+                                }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
                     }
                     .padding([.top, .leading, .trailing])
