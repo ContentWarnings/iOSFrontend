@@ -5,10 +5,6 @@ struct SearchMovieTileView: View {
 
     let movie: MovieReduced
 
-    var hasWarning: Bool {
-        return movie.shouldWarn()
-    }
-
     // TODO: Make view bigger to show more description
     var body: some View {
         HStack {
@@ -23,7 +19,7 @@ struct SearchMovieTileView: View {
             VStack(spacing: 0) {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .isEmpty(!hasWarning)
+                        .isEmpty(!movie.shouldWarn())
                         .font(.system(size: 20))
                         .padding(.horizontal, 0.0)
                     Text(movie.title)

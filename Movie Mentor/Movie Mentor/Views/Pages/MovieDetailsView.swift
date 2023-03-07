@@ -5,15 +5,11 @@ struct MovieDetailsView: View {
 
     let movie: MovieFull
 
-    var shouldWarn: Bool {
-        return movie.shouldWarn()
-    }
-
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 WarningBannerView()
-                    .isEmpty(!shouldWarn)
+                    .isEmpty(!movie.shouldWarn())
                 HStack(alignment: .top) {
                     // TODO: Replace with Kingfisher image
                     AsyncImage(url: movie.img) { image in
@@ -65,7 +61,13 @@ struct MovieDetailsView: View {
                 Text("Content Warnings")
                     .font(Font.custom("Roboto-Bold", size: 32))
                     .padding(.horizontal, 25.0)
-                // TODO: Display content warnings here
+                    .padding(.bottom, 6.0)
+                LazyVStack {
+                    ForEach(movie.warnings.sorted()) { warning in
+                        WarningRowView(settingsChanged: $settingsChanged, warning: warning)
+                            .padding(.horizontal, 25.0)
+                    }
+                }
             }
         }
         .navigationTitle(movie.title)

@@ -4,9 +4,6 @@ struct CWTagView: View {
     @Binding var settingsChanged: Bool
 
     let warning: ContentWarning
-    var shouldWarn: Bool {
-        return warning.shouldWarn()
-    }
 
     var body: some View {
         Text(warning.name)
@@ -16,7 +13,7 @@ struct CWTagView: View {
             .background(
                 RoundedRectangle(cornerRadius: 5)
                     .frame(height: 20.0)
-                    .foregroundColor(shouldWarn ? Color("Secondary") : Color("OffBlack"))
+                    .foregroundColor(warning.shouldWarn() ? Color("Secondary") : Color("OffBlack"))
             )
             .onChange(of: settingsChanged) { _ in }
     }
