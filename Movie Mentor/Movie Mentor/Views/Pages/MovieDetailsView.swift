@@ -1,16 +1,15 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
-    let movie: MovieFull
+    @Binding var settingsChanged: Bool
 
-    @State private var hasWarning: Bool = true // TODO: Update with warning check logic
+    let movie: MovieFull
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 WarningBannerView()
-                    .isEmpty(!hasWarning)
-                    .padding(.bottom, 24.0)
+                    .isEmpty(!movie.shouldWarn())
                 HStack(alignment: .top) {
                     // TODO: Replace with Kingfisher image
                     AsyncImage(url: movie.img) { image in
@@ -36,6 +35,7 @@ struct MovieDetailsView: View {
                     }
                 }
                 .frame(height: 260.0)
+                .padding(.top, 24.0)
                 .padding(.horizontal, 25.0)
                 .padding(.bottom)
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -61,17 +61,27 @@ struct MovieDetailsView: View {
                 Text("Content Warnings")
                     .font(Font.custom("Roboto-Bold", size: 32))
                     .padding(.horizontal, 25.0)
-                // TODO: Display content warnings here
+                    .padding(.bottom, 6.0)
+                LazyVStack {
+                    ForEach(movie.warnings.sorted()) { warning in
+                        NavigationLink(destination: WarningDetailsView(warning: warning)) {
+                            WarningRowView(settingsChanged: $settingsChanged, warning: warning)
+                                .padding(.horizontal, 25.0)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
             }
         }
         .navigationTitle(movie.title)
+        .onChange(of: settingsChanged) { _ in } // Used to refresh view on settings change
     }
 }
 
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MovieDetailsView(movie: MovieFull.testData)
+            MovieDetailsView(settingsChanged: .constant(false), movie: MovieFull.testData)
         }
     }
 }

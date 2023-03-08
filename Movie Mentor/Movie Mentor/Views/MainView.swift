@@ -3,6 +3,7 @@ import SwiftUI
 struct MainView: View {
     @State private var selectedTab = "Featured"
     @State private var searchBarFocused = false
+    @State private var settingsChanged = false
 
     init(selectedTab: String = "Featured", searchBarFocused: Bool = false) {
         self.selectedTab = selectedTab
@@ -18,19 +19,25 @@ struct MainView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            FeaturedView(selectedTab: $selectedTab, searchBarFocused: $searchBarFocused)
+            FeaturedView(selectedTab: $selectedTab,
+                         searchBarFocused: $searchBarFocused,
+                         settingsChanged: $settingsChanged)
                 .tabItem {
                     Label("Featured", systemImage: "star.fill")
                     Text("Featured")
                 }
                 .tag("Featured")
-            SearchView(selectedTab: $selectedTab, searchBarFocused: $searchBarFocused)
+            SearchView(selectedTab: $selectedTab,
+                       searchBarFocused: $searchBarFocused,
+                       settingsChanged: $settingsChanged)
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                     Text("Search")
                 }
                 .tag("Search")
-            SettingsView()
+            SettingsView(selectedTab: $selectedTab,
+                         searchBarFocused: $searchBarFocused,
+                         settingsChanged: $settingsChanged)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                     Text("Setting")
@@ -42,12 +49,6 @@ struct MainView: View {
             // Unfocus search bar if leaving search tab
             if newTab != "Search" {
                 searchBarFocused = false
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                LogoHeaderView(pageTitle: selectedTab)
             }
         }
     }

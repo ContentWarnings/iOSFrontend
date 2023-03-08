@@ -3,6 +3,7 @@ import SwiftUI
 struct FeaturedView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
+    @Binding var settingsChanged: Bool
 
     let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -12,23 +13,33 @@ struct FeaturedView: View {
     let movies: [MovieReduced] = MovieReduced.testData
 
     var body: some View {
-        ScrollView {
-            VStack {
-                SearchBarView(searchString: .constant(""),
-                              selectedTab: $selectedTab,
-                              searchBarFocused: $searchBarFocused)
-                    .padding(.horizontal, 22.0)
-                    .padding(.top, 10.0)
-                LazyVGrid(columns: columns) {
-                    ForEach(movies) { movie in
-                        // TODO: Make each movie tile tappable for details
-                        NavigationLink(destination: MovieDetailsView(movie: MovieFull.testData)) {
-                            FeaturedMovieTileView(movie: movie)
+        NavigationView {
+            ScrollView {
+                VStack {
+                    SearchBarView(searchString: .constant(""),
+                                  selectedTab: $selectedTab,
+                                  searchBarFocused: $searchBarFocused)
+                        .padding(.horizontal, 22.0)
+                        .padding(.top, 10.0)
+                    LazyVGrid(columns: columns) {
+                        ForEach(movies) { movie in
+                            if !movie.shouldHide() {
+                                NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
+                                                                             movie: MovieFull.testData)) {
+                                    FeaturedMovieTileView(movie: movie)
+                                }
+                                .buttonStyle(.plain)
+                            }
                         }
-                        .buttonStyle(.plain)
                     }
+                    .padding([.top, .leading, .trailing])
                 }
-                .padding([.top, .leading, .trailing])
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    LogoHeaderView(pageTitle: selectedTab)
+                }
             }
         }
     }
@@ -37,7 +48,9 @@ struct FeaturedView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FeaturedView(selectedTab: .constant("Featured"), searchBarFocused: .constant(false))
+            FeaturedView(selectedTab: .constant("Featured"),
+                         searchBarFocused: .constant(false),
+                         settingsChanged: .constant(false))
         }
     }
 }

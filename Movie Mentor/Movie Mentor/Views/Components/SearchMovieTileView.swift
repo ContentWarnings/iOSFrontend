@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct SearchMovieTileView: View {
-    let movie: MovieReduced
+    @Binding var settingsChanged: Bool
 
-    @State private var hasWarning: Bool = true // TODO: Update with warning check logic
+    let movie: MovieReduced
 
     var body: some View {
         HStack {
@@ -18,7 +18,7 @@ struct SearchMovieTileView: View {
             VStack(spacing: 0) {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .isEmpty(!hasWarning)
+                        .isEmpty(!movie.shouldWarn())
                         .font(.system(size: 20))
                         .padding(.horizontal, 0.0)
                     Text(movie.title)
@@ -40,13 +40,12 @@ struct SearchMovieTileView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(Font.custom("Roboto-Regular", size: 16))
                     .opacity(0.5)
-                    .lineLimit(1)
+                    .lineLimit(3)
                     .padding(.top, 3.0)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        ForEach(movie.warnings, id: \.self) { warning in
-                            // TODO: Update with warning check logic
-                            CWTagView(warningName: warning, shouldWarn: false)
+                        ForEach(movie.warnings.sorted()) { warning in
+                            CWTagView(settingsChanged: $settingsChanged, warning: warning)
                         }
                     }
                     .frame(height: 20.0)
@@ -55,14 +54,28 @@ struct SearchMovieTileView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .frame(height: 95.0)
+        .frame(height: 130.0)
         .padding(.horizontal, 24.0)
         .padding(.vertical, 10.0)
+        .onChange(of: settingsChanged) { _ in } // Used to refresh view on settings change
     }
 }
 
 struct SearchMovieTileView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchMovieTileView(movie: MovieReduced.testData[2])
+        VStack {
+            SearchMovieTileView(settingsChanged: .constant(false), movie: MovieReduced.testData[2])
+            SearchMovieTileView.FinalSearchTile()
+        }
+    }
+}
+
+extension SearchMovieTileView {
+    struct FinalSearchTile: View {
+        var body: some View {
+            Text("No More Search Results")
+                .font(Font.custom("Roboto-Bold", size: 30))
+                .padding()
+        }
     }
 }

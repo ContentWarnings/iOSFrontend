@@ -10,7 +10,7 @@ struct MovieFull: Identifiable {
     var overview: String
     var runtime: Int
     var genres: [String]
-    var warnings: [String] // TODO: Update to content warning objects
+    var warnings: [ContentWarning]
     var streamingProviders: [(String, URL)]
     var streamingLink: URL
 
@@ -34,6 +34,28 @@ struct MovieFull: Identifiable {
 
         return str
     }
+
+    func shouldHide() -> Bool {
+        let userDefaults = UserDefaults.standard
+
+        for warning in self.warnings where userDefaults.string(forKey: warning.name) ==
+        ContentWarning.WarningSetting.hide.rawValue {
+            return true
+        }
+
+        return false
+    }
+
+    func shouldWarn() -> Bool {
+        let userDefaults = UserDefaults.standard
+
+        for warning in self.warnings where userDefaults.string(forKey: warning.name) ==
+        ContentWarning.WarningSetting.warn.rawValue {
+            return true
+        }
+
+        return false
+    }
 }
 
 extension MovieFull {
@@ -52,7 +74,7 @@ extension MovieFull {
                   """,
                   runtime: 125,
                   genres: ["Adventure", "Science Fiction", "Comedy"],
-                  warnings: ["Kidnapping", "Drug Use"],
+                  warnings: ContentWarning.testData,
                   streamingProviders: [
                     ("Rent",
                      URL(string: "https://image.tmdb.org/t/p/original/peURlLlr8jggOwK53fJ5wdQl05y.jpg")!),
