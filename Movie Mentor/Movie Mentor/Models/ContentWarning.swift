@@ -1,9 +1,9 @@
 import Foundation
 
-struct ContentWarning: Identifiable, Comparable {
+struct ContentWarning: Comparable, Decodable, Identifiable {
     var id: String
     var name: String
-    var times: [(Int, Int)]
+    var times: [[Int]]
     var description: String
 
     // Sorted alphabetically with 'warn' warnings first
@@ -47,7 +47,7 @@ struct ContentWarning: Identifiable, Comparable {
         if times.count > 1 {
             return "Multiple Instances"
         } else {
-            return ContentWarning.timeString(startTime: self.times[0].0, endTime: self.times[0].1)
+            return ContentWarning.timeString(startTime: self.times[0][0], endTime: self.times[0][1])
         }
     }
 
@@ -56,7 +56,7 @@ struct ContentWarning: Identifiable, Comparable {
         var res = ""
 
         for time in times {
-            res += ContentWarning.timeString(startTime: time.0, endTime: time.1) + "\n"
+            res += ContentWarning.timeString(startTime: time[0], endTime: time[1]) + "\n"
         }
 
         return res
@@ -68,15 +68,15 @@ extension ContentWarning {
     [
         ContentWarning(id: "cc8ea1b8-2155-4e35-97b5-cda4058edc0e",
                        name: "Murder",
-                       times: [(1, 2), (3, 4)],
+                       times: [[1, 2], [3, 4]],
                        description: "Blue people die."),
         ContentWarning(id: "cc8ea1b8-2155-4e35-97b5-cda4058acd3",
                        name: "Kidnapping",
-                       times: [(3, 4)],
+                       times: [[3, 4]],
                        description: "Blue people are kidnapped."),
         ContentWarning(id: "cc8ea1b8-2155-4e35-97b5-cda4058edabde",
                        name: "Drug Use",
-                       times: [(92, 128)],
+                       times: [[92, 128]],
                        description: "Blue people use drugs.")
     ]
 }

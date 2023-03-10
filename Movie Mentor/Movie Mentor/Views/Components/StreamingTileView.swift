@@ -27,8 +27,8 @@ struct StreamingTileView: View {
 
 struct StreamingTileView_Previews: PreviewProvider {
     static var previews: some View {
-        StreamingTileView(streamType: MovieFull.testData.streamingProviders[0].0,
-                          providerImage: MovieFull.testData.streamingProviders[0].1,
+        StreamingTileView(streamType: MovieFull.testData.streamingProviders[0][0],
+                          providerImage: URL(string: MovieFull.testData.streamingProviders[0][1])!,
                           streamingLink: MovieFull.testData.streamingLink)
     }
 }

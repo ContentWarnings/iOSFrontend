@@ -40,9 +40,9 @@ struct MovieDetailsView: View {
                 .padding(.bottom)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        ForEach(movie.streamingProviders, id: \.1) { provider in
-                            StreamingTileView(streamType: provider.0,
-                                              providerImage: provider.1,
+                        ForEach(movie.streamingProviders, id: \.self) { provider in
+                            StreamingTileView(streamType: provider[0],
+                                              providerImage: URL(string: provider[1])!,
                                               streamingLink: movie.streamingLink)
                         }
                     }

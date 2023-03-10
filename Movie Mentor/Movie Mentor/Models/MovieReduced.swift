@@ -1,6 +1,6 @@
 import Foundation
 
-struct MovieReduced: Identifiable {
+struct MovieReduced: Decodable, Identifiable {
     var id: Int
     var title: String
     var release: Date

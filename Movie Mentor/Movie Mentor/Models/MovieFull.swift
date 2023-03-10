@@ -1,6 +1,6 @@
 import Foundation
 
-struct MovieFull: Identifiable {
+struct MovieFull: Decodable, Identifiable {
     var id: Int
     var title: String
     var release: Date
@@ -11,7 +11,7 @@ struct MovieFull: Identifiable {
     var runtime: Int
     var genres: [String]
     var warnings: [ContentWarning]
-    var streamingProviders: [(String, URL)]
+    var streamingProviders: [[String]]
     var streamingLink: URL
 
     func releaseDateString() -> String {
@@ -76,10 +76,10 @@ extension MovieFull {
                   genres: ["Adventure", "Science Fiction", "Comedy"],
                   warnings: ContentWarning.testData,
                   streamingProviders: [
-                    ("Rent",
-                     URL(string: "https://image.tmdb.org/t/p/original/peURlLlr8jggOwK53fJ5wdQl05y.jpg")!),
-                    ("Rent",
-                     URL(string: "https://image.tmdb.org/t/p/original/5NyLm42TmCqCMOZFvH4fcoSNKEW.jpg")!)],
+                    ["Rent",
+                     "https://image.tmdb.org/t/p/original/peURlLlr8jggOwK53fJ5wdQl05y.jpg"],
+                    ["Rent",
+                     "https://image.tmdb.org/t/p/original/5NyLm42TmCqCMOZFvH4fcoSNKEW.jpg"]],
                   streamingLink: URL(string:
                     "https://www.themoviedb.org/movie/315162-puss-in-boots-the-last-wish/watch?locale=US")!)
 }
