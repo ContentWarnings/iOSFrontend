@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 struct MovieDetailsView: View {
@@ -11,15 +12,14 @@ struct MovieDetailsView: View {
                 WarningBannerView()
                     .isEmpty(!movie.shouldWarn())
                 HStack(alignment: .top) {
-                    // TODO: Replace with Kingfisher image
-                    AsyncImage(url: movie.img) { image in
-                        image.resizable().scaledToFit()
-                            .cornerRadius(12)
-                    } placeholder: {
-                        ProgressView()
-                            .frame(width: 170.0)
-                    }
-                    .padding(.trailing, 17.0)
+                    KFImage(movie.img)
+                        .placeholder {
+                            ProgressView()
+                        }
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(12)
+                        .padding(.trailing, 17.0)
                     VStack(alignment: .leading) {
                         Group {
                             Text(movie.releaseDateString())

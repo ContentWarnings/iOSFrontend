@@ -326,6 +326,7 @@
 				0F71886B297DA4F100772B79 /* Frameworks */,
 				0F71886C297DA4F100772B79 /* Resources */,
 				0F5A5BEE297DAF2200DB20CA /* ShellScript */,
+				7C1AA6FAC63B8FD66BD863A7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -363,6 +364,7 @@
 				0F718884297DA4F200772B79 /* Sources */,
 				0F718885297DA4F200772B79 /* Frameworks */,
 				0F718886297DA4F200772B79 /* Resources */,
+				68A5270AE70B2A17B199B812 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -458,6 +460,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		0F5A5BEE297DAF2200DB20CA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
@@ -515,6 +518,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68A5270AE70B2A17B199B812 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movie Mentor-Movie MentorUITests/Pods-Movie Mentor-Movie MentorUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movie Mentor-Movie MentorUITests/Pods-Movie Mentor-Movie MentorUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Movie Mentor-Movie MentorUITests/Pods-Movie Mentor-Movie MentorUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C1AA6FAC63B8FD66BD863A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movie Mentor/Pods-Movie Mentor-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movie Mentor/Pods-Movie Mentor-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Movie Mentor/Pods-Movie Mentor-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F2261113BCBC5891FED8F0C0 /* [CP] Check Pods Manifest.lock */ = {

@@ -7,6 +7,8 @@ target 'Movie Mentor' do
 
   # Pods for Movie Mentor
   pod 'SwiftLint'
+  pod 'Kingfisher', '~> 7.0'
+  pod 'Alamofire'
 
   target 'Movie MentorTests' do
     inherit! :search_paths
