@@ -44,7 +44,7 @@ struct SearchMovieTileView: View {
                     .padding(.top, 3.0)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        ForEach(movie.warnings.sorted()) { warning in
+                        ForEach(movie.warnings) { warning in
                             CWTagView(settingsChanged: $settingsChanged, warning: warning)
                         }
                     }

@@ -3,26 +3,38 @@ import Foundation
 struct MovieReduced: Decodable, Identifiable {
     var id: Int
     var title: String
-    var release: Date
+    var release: String
     var img: URL
     var overview: String
     var runtime: Int
     var genres: [String]
-    var warnings: [ContentWarning]
+    var cw: [String]
+
+    var releaseDate: Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.date(from: self.release)!
+    }
+
+    var warnings: [ContentWarningReduced] {
+        var array: [ContentWarningReduced] = []
+        for warning in cw {
+            array.append(ContentWarningReduced(name: warning))
+        }
+
+        return array.sorted()
+    }
 
     // Returns a formatted  description string for displaying in search results
     func searchDescriptionString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy"
-        let yearString = dateFormatter.string(from: self.release)
+        let yearString = dateFormatter.string(from: self.releaseDate)
         return yearString + " - " + overview
     }
 
     func shouldHide() -> Bool {
-        let userDefaults = UserDefaults.standard
-
-        for warning in self.warnings where userDefaults.string(forKey: warning.name) ==
-        ContentWarning.WarningSetting.hide.rawValue {
+        for warning in self.warnings where warning.shouldHide() {
             return true
         }
 
@@ -30,10 +42,7 @@ struct MovieReduced: Decodable, Identifiable {
     }
 
     func shouldWarn() -> Bool {
-        let userDefaults = UserDefaults.standard
-
-        for warning in self.warnings where userDefaults.string(forKey: warning.name) ==
-        ContentWarning.WarningSetting.warn.rawValue {
+        for warning in self.warnings where warning.shouldWarn() {
             return true
         }
 
@@ -46,7 +55,7 @@ extension MovieReduced {
     [
         MovieReduced(id: 640146,
                      title: "Ant-Man and the Wasp: Quantumania",
-                     release: Date.now,
+                     release: "2022-03-24",
                      img: URL(string: "https://image.tmdb.org/t/p/original/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg")!,
                      overview: """
                      Super-Hero partners Scott Lang and Hope van Dyne, along with with Hope's parents \
@@ -58,10 +67,10 @@ extension MovieReduced {
                      genres: ["Adventure",
                              "Science Fiction",
                              "Comedy"],
-                     warnings: ContentWarning.testData),
+                     cw: ["Murder"]),
         MovieReduced(id: 76600,
                      title: "Avatar: The Way of Water",
-                     release: Date.now,
+                     release: "2022-03-24",
                      img: URL(string: "https://image.tmdb.org/t/p/original/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg")!,
                      overview: """
                      Set more than a decade after the events of the first film, learn the story of the Sully family \
@@ -72,10 +81,10 @@ extension MovieReduced {
                      genres: ["Science Fiction",
                              "Adventure",
                              "Action"],
-                     warnings: ContentWarning.testData),
+                     cw: ["Kidnapping"]),
         MovieReduced(id: 315162,
                      title: "Puss in Boots: The Last Wish",
-                     release: Date.now,
+                     release: "2022-03-24",
                      img: URL(string: "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg")!,
                      overview: """
                      Puss in Boots discovers that his passion for adventure has taken its toll: He has burned \
@@ -88,10 +97,10 @@ extension MovieReduced {
                              "Comedy",
                              "Family",
                              "Fantasy"],
-                     warnings: ContentWarning.testData),
+                     cw: ["Drug Use"]),
         MovieReduced(id: 6401469,
                      title: "Ant-Man and the Wasp: Quantumania",
-                     release: Date.now,
+                     release: "2022-03-24",
                      img: URL(string: "https://image.tmdb.org/t/p/original/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg")!,
                      overview: """
                      Super-Hero partners Scott Lang and Hope van Dyne, along with with Hope's parents \
@@ -103,10 +112,10 @@ extension MovieReduced {
                      genres: ["Adventure",
                              "Science Fiction",
                              "Comedy"],
-                     warnings: ContentWarning.testData),
+                     cw: ["Murder"]),
         MovieReduced(id: 766009,
                      title: "Avatar: The Way of Water",
-                     release: Date.now,
+                     release: "2022-03-24",
                      img: URL(string: "https://image.tmdb.org/t/p/original/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg")!,
                      overview: """
                      Set more than a decade after the events of the first film, learn the story of the Sully family \
@@ -117,10 +126,10 @@ extension MovieReduced {
                      genres: ["Science Fiction",
                              "Adventure",
                              "Action"],
-                     warnings: ContentWarning.testData),
+                     cw: ["Kidnapping"]),
         MovieReduced(id: 3151629,
                      title: "Puss in Boots: The Last Wish",
-                     release: Date.now,
+                     release: "2022-03-24",
                      img: URL(string: "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg")!,
                      overview: """
                      Puss in Boots discovers that his passion for adventure has taken its toll: He has burned \
@@ -133,6 +142,6 @@ extension MovieReduced {
                              "Comedy",
                              "Family",
                              "Fantasy"],
-                     warnings: ContentWarning.testData)
+                     cw: ["Drug Use"])
     ]
 }

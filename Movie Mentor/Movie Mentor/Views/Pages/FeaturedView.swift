@@ -9,8 +9,10 @@ struct FeaturedView: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    // TODO: Replace with real API data
-    let movies: [MovieReduced] = MovieReduced.testData
+
+    @ObservedObject var viewModel = FeaturedViewModel()
+
+    // TODO: Show loading screen before movies load
 
     var body: some View {
         NavigationView {
@@ -22,7 +24,7 @@ struct FeaturedView: View {
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
                     LazyVGrid(columns: columns) {
-                        ForEach(movies) { movie in
+                        ForEach(viewModel.movies) { movie in
                             if !movie.shouldHide() {
                                 NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
                                                                              movie: MovieFull.testData)) {
