@@ -3,6 +3,7 @@ import Foundation
 
 class FeaturedViewModel: ObservableObject {
     @Published var movies = [MovieReduced]()
+    @Published var isDoneLoading = false
 
     init() {
         getTrendingMovies()
@@ -14,6 +15,7 @@ class FeaturedViewModel: ObservableObject {
                 switch response.result {
                 case .success(let data):
                     self.movies = data.results
+                    self.isDoneLoading = true
                 case .failure(let error):
                     debugPrint(error)
                 }

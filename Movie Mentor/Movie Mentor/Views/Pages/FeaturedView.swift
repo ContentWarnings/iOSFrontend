@@ -12,8 +12,6 @@ struct FeaturedView: View {
 
     @ObservedObject var viewModel = FeaturedViewModel()
 
-    // TODO: Show loading screen before movies load
-
     var body: some View {
         NavigationView {
             ScrollView {
@@ -23,18 +21,22 @@ struct FeaturedView: View {
                                   searchBarFocused: $searchBarFocused)
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
-                    LazyVGrid(columns: columns) {
-                        ForEach(viewModel.movies) { movie in
-                            if !movie.shouldHide() {
-                                NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
-                                                                             movie: MovieFull.testData)) {
-                                    FeaturedMovieTileView(movie: movie)
+                    if viewModel.isDoneLoading {
+                        LazyVGrid(columns: columns) {
+                            ForEach(viewModel.movies) { movie in
+                                if !movie.shouldHide() {
+                                    NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
+                                                                                 movie: MovieFull.testData)) {
+                                        FeaturedMovieTileView(movie: movie)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
+                        .padding([.top, .leading, .trailing])
+                    } else {
+                        ProgressView()
                     }
-                    .padding([.top, .leading, .trailing])
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
