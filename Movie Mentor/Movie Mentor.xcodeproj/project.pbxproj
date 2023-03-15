@@ -16,6 +16,8 @@
 		0F71888F297DA4F200772B79 /* Movie_MentorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71888E297DA4F200772B79 /* Movie_MentorUITestsLaunchTests.swift */; };
 		0F95CB2729BFF3620050C2F2 /* FeaturedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95CB2629BFF3620050C2F2 /* FeaturedViewModel.swift */; };
 		0F95CB2929BFFCB40050C2F2 /* ContentWarningReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95CB2829BFFCB40050C2F2 /* ContentWarningReduced.swift */; };
+		0F95CB2D29C13B860050C2F2 /* ResponseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95CB2C29C13B860050C2F2 /* ResponseModels.swift */; };
+		0F95CB2F29C178D50050C2F2 /* WarningSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95CB2E29C178D50050C2F2 /* WarningSettingsViewModel.swift */; };
 		0FC180CB29A3F3C20031DDAB /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC180CA29A3F3C20031DDAB /* MovieDetailsView.swift */; };
 		0FC180CD29A4091C0031DDAB /* WarningBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC180CC29A4091C0031DDAB /* WarningBannerView.swift */; };
 		0FC180CF29A4128E0031DDAB /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC180CE29A4128E0031DDAB /* StarRatingView.swift */; };
@@ -86,6 +88,8 @@
 		0F71888E297DA4F200772B79 /* Movie_MentorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie_MentorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0F95CB2629BFF3620050C2F2 /* FeaturedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedViewModel.swift; sourceTree = "<group>"; };
 		0F95CB2829BFFCB40050C2F2 /* ContentWarningReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentWarningReduced.swift; sourceTree = "<group>"; };
+		0F95CB2C29C13B860050C2F2 /* ResponseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModels.swift; sourceTree = "<group>"; };
+		0F95CB2E29C178D50050C2F2 /* WarningSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningSettingsViewModel.swift; sourceTree = "<group>"; };
 		0FC180CA29A3F3C20031DDAB /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		0FC180CC29A4091C0031DDAB /* WarningBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningBannerView.swift; sourceTree = "<group>"; };
 		0FC180CE29A4128E0031DDAB /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				0F95CB2629BFF3620050C2F2 /* FeaturedViewModel.swift */,
+				0F95CB2E29C178D50050C2F2 /* WarningSettingsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				0FD7620D29A2F1890060EB7E /* MovieFull.swift */,
 				0FC180D429AA8B000031DDAB /* ContentWarning.swift */,
 				0F95CB2829BFFCB40050C2F2 /* ContentWarningReduced.swift */,
+				0F95CB2C29C13B860050C2F2 /* ResponseModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -603,6 +609,7 @@
 				0FD7620C29A1443C0060EB7E /* CWTagView.swift in Sources */,
 				0F95CB2729BFF3620050C2F2 /* FeaturedViewModel.swift in Sources */,
 				0FC180DD29B6C2960031DDAB /* WarningDetailsView.swift in Sources */,
+				0F95CB2D29C13B860050C2F2 /* ResponseModels.swift in Sources */,
 				0FD76206299F50870060EB7E /* SearchMovieTileView.swift in Sources */,
 				0FD761FE29943F460060EB7E /* SearchBarView.swift in Sources */,
 				0FD7620E29A2F1890060EB7E /* MovieFull.swift in Sources */,
@@ -610,6 +617,7 @@
 				0F95CB2929BFFCB40050C2F2 /* ContentWarningReduced.swift in Sources */,
 				0FC180D529AA8B000031DDAB /* ContentWarning.swift in Sources */,
 				0FC180D129A55FA30031DDAB /* StreamingTileView.swift in Sources */,
+				0F95CB2F29C178D50050C2F2 /* WarningSettingsViewModel.swift in Sources */,
 				0FC180D929B404F30031DDAB /* IndividualSettingView.swift in Sources */,
 				0F718874297DA4F100772B79 /* FeaturedView.swift in Sources */,
 				0FD761E229932BDC0060EB7E /* MovieReduced.swift in Sources */,
