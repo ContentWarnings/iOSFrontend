@@ -7,3 +7,7 @@ struct TrendingResponse: Decodable {
 struct NamesResponse: Decodable {
     var cws: [String]
 }
+
+struct DescriptionsResponse: Decodable {
+    var response: String
+}

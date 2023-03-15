@@ -34,18 +34,26 @@ struct IndividualSettingView: View {
     }
 
     let warningName: String
-    var warningDescription: String {
-        // TODO: Replace with API call
-        return "Sentence containing an explanation of the content warning. This will be fetched from API."
+
+    @ObservedObject var viewModel: IndividualSettingViewModel
+
+    init(settingsChanged: Binding<Bool>, warningName: String) {
+        self._settingsChanged = settingsChanged
+        self.warningName = warningName
+        self.viewModel = IndividualSettingViewModel(warningName: warningName)
     }
 
     var body: some View {
         List {
-            Section {
-            } footer: {
-                Text(warningDescription)
-                    .font(Font.custom("Roboto-Regular", size: 16))
-                    .foregroundColor(Color.primary)
+            if viewModel.isDoneLoading {
+                Section {
+                } footer: {
+                    Text(viewModel.description)
+                        .font(Font.custom("Roboto-Regular", size: 16))
+                        .foregroundColor(Color.primary)
+                }
+            } else {
+                ProgressView()
             }
 
             Section {
