@@ -18,8 +18,9 @@ struct WarningSettingsView: View {
 
             if viewModel.isDoneLoading {
                 ForEach(viewModel.warningNames, id: \.self) { warning in
-                    NavigationLink(destination: IndividualSettingView(settingsChanged: $settingsChanged,
-                                                                      warningName: warning)) {
+                    NavigationLink(destination: NavigationLazyView(
+                        IndividualSettingView(settingsChanged: $settingsChanged,
+                                              warningName: warning))) {
                         HStack {
                             Text(warning)
                             Spacer()

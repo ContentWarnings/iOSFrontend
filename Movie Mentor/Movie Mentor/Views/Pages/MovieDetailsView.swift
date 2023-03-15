@@ -4,7 +4,7 @@ import SwiftUI
 struct MovieDetailsView: View {
     @Binding var settingsChanged: Bool
 
-    let movie: MovieFull
+    let movie: MovieFull // TODO: Connect to API
 
     var body: some View {
         ScrollView {
@@ -64,7 +64,7 @@ struct MovieDetailsView: View {
                     .padding(.bottom, 6.0)
                 LazyVStack {
                     ForEach(movie.warnings.sorted()) { warning in
-                        NavigationLink(destination: WarningDetailsView(warning: warning)) {
+                        NavigationLink(destination: NavigationLazyView(WarningDetailsView(warning: warning))) {
                             WarningRowView(settingsChanged: $settingsChanged, warning: warning)
                                 .padding(.horizontal, 25.0)
                         }

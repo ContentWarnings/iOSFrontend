@@ -25,8 +25,9 @@ struct FeaturedView: View {
                         LazyVGrid(columns: columns) {
                             ForEach(viewModel.movies) { movie in
                                 if !movie.shouldHide() {
-                                    NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
-                                                                                 movie: MovieFull.testData)) {
+                                    NavigationLink(destination: NavigationLazyView(
+                                        MovieDetailsView(settingsChanged: $settingsChanged,
+                                                         movie: MovieFull.testData))) {
                                         FeaturedMovieTileView(movie: movie)
                                     }
                                     .buttonStyle(.plain)

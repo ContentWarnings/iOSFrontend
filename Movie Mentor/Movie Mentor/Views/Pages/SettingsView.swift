@@ -16,7 +16,8 @@ struct SettingsView: View {
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
                         List {
-                            NavigationLink(destination: WarningSettingsView(settingsChanged: $settingsChanged)) {
+                            NavigationLink(destination: NavigationLazyView(
+                                WarningSettingsView(settingsChanged: $settingsChanged))) {
                                 SettingsRow(imageName: "exclamationmark.triangle.fill", rowText: "Content Warnings")
                             }
                             // TODO: Create about page

@@ -30,8 +30,9 @@ struct SearchView: View {
                             // TODO: Replace with real API data
                             ForEach(MovieReduced.testData) { movie in
                                 if !movie.shouldHide() {
-                                    NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
-                                                                                 movie: MovieFull.testData)) {
+                                    NavigationLink(destination: NavigationLazyView(
+                                        MovieDetailsView(settingsChanged: $settingsChanged,
+                                                         movie: MovieFull.testData))) {
                                         VStack(spacing: 0) {
                                             SearchMovieTileView(settingsChanged: $settingsChanged, movie: movie)
                                             Separator()
