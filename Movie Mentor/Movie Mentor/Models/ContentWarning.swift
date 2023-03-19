@@ -3,8 +3,8 @@ import Foundation
 struct ContentWarning: Comparable, Decodable, Identifiable {
     var id: String
     var name: String
-    var times: [[Int]]
-    var description: String
+    var time: [[Int]]
+    var desc: String
 
     // Sorted alphabetically with 'warn' warnings first
     static func < (lhs: ContentWarning, rhs: ContentWarning) -> Bool {
@@ -44,10 +44,10 @@ struct ContentWarning: Comparable, Decodable, Identifiable {
 
     // Returns a formatted string for use in MovieDetailsView
     func timeSummaryString() -> String {
-        if times.count > 1 {
+        if self.time.count > 1 {
             return "Multiple Instances"
         } else {
-            return ContentWarning.timeString(startTime: self.times[0][0], endTime: self.times[0][1])
+            return ContentWarning.timeString(startTime: self.time[0][0], endTime: self.time[0][1])
         }
     }
 
@@ -55,7 +55,7 @@ struct ContentWarning: Comparable, Decodable, Identifiable {
     func allTimesString() -> String {
         var res = ""
 
-        for time in times {
+        for time in self.time {
             res += ContentWarning.timeString(startTime: time[0], endTime: time[1]) + "\n"
         }
 
@@ -68,16 +68,16 @@ extension ContentWarning {
     [
         ContentWarning(id: "cc8ea1b8-2155-4e35-97b5-cda4058edc0e",
                        name: "Murder",
-                       times: [[1, 2], [3, 4]],
-                       description: "Blue people die."),
+                       time: [[1, 2], [3, 4]],
+                       desc: "Blue people die."),
         ContentWarning(id: "cc8ea1b8-2155-4e35-97b5-cda4058acd3",
                        name: "Kidnapping",
-                       times: [[3, 4]],
-                       description: "Blue people are kidnapped."),
+                       time: [[3, 4]],
+                       desc: "Blue people are kidnapped."),
         ContentWarning(id: "cc8ea1b8-2155-4e35-97b5-cda4058edabde",
                        name: "Drug Use",
-                       times: [[92, 128]],
-                       description: "Blue people use drugs.")
+                       time: [[92, 128]],
+                       desc: "Blue people use drugs.")
     ]
 }
 

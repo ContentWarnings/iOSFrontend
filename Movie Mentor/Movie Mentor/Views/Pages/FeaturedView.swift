@@ -27,7 +27,7 @@ struct FeaturedView: View {
                                 if !movie.shouldHide() {
                                     NavigationLink(destination: NavigationLazyView(
                                         MovieDetailsView(settingsChanged: $settingsChanged,
-                                                         movie: MovieFull.testData))) {
+                                                         movieId: movie.id, movieTitle: movie.title))) {
                                         FeaturedMovieTileView(movie: movie)
                                     }
                                     .buttonStyle(.plain)

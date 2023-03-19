@@ -32,7 +32,7 @@ struct SearchView: View {
                                 if !movie.shouldHide() {
                                     NavigationLink(destination: NavigationLazyView(
                                         MovieDetailsView(settingsChanged: $settingsChanged,
-                                                         movie: MovieFull.testData))) {
+                                                         movieId: movie.id, movieTitle: movie.title))) {
                                         VStack(spacing: 0) {
                                             SearchMovieTileView(settingsChanged: $settingsChanged, movie: movie)
                                             Separator()

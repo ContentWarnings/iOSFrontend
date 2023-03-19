@@ -1,6 +1,7 @@
 import Kingfisher
 import SwiftUI
 
+// TODO: Fix text styling
 struct StreamingTileView: View {
     let streamType: String
     let providerImage: URL

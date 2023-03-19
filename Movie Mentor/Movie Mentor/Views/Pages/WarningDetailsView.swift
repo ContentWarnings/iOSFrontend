@@ -15,7 +15,7 @@ struct WarningDetailsView: View {
                 .padding(.top)
                 Text("Summary")
                     .font(Font.custom("Roboto-Bold", size: 32))
-                Text(warning.description)
+                Text(warning.desc)
                     .font(Font.custom("Roboto-Regular", size: 21))
                     .padding(.bottom)
                 Text("Submit Feedback")
