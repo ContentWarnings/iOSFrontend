@@ -14,7 +14,14 @@ struct MovieFull: Decodable, Identifiable {
     var streaming_info: StreamingInfo?
 
     var streamingProviders: [[String]] {
-        return self.streaming_info?.providers ?? []
+        var array: [[String]] = []
+
+        for provider in self.streaming_info?.providers ?? [] {
+            let string = provider[0].components(separatedBy: "- ")[1].capitalized
+            array.append(Array([string, provider[1]]))
+        }
+
+        return array
     }
 
     var streamingLink: URL {
