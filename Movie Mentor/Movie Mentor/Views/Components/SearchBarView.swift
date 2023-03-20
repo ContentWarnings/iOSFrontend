@@ -34,7 +34,7 @@ struct SearchBarView: View {
                 showingSheet.toggle()
             } label: {
                 Image(systemName: "line.3.horizontal.decrease.circle")
-                    .tint(selectedGenre == "None" && selectedSort == "Relevance" ?
+                    .tint(selectedGenre == "Any" && selectedSort == "Relevance" ?
                           Color("SearchBarText") : Color("Primary"))
             }
             .sheet(isPresented: $showingSheet) {
@@ -73,7 +73,7 @@ struct SearchBarView_Previews: PreviewProvider {
             SearchBarView(searchString: .constant(""),
                           selectedTab: .constant("Search"),
                           searchBarFocused: .constant(false),
-                          selectedGenre: .constant("None"),
+                          selectedGenre: .constant("Any"),
                           selectedSort: .constant("Relevance"))
                 .frame(width: 343.0, height: 37.0)
             SettingsSearchBarView(searchString: .constant(""))

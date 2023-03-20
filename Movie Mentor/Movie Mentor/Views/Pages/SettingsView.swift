@@ -48,7 +48,7 @@ struct SettingsView_Previews: PreviewProvider {
             SettingsView(selectedTab: .constant("Settings"),
                          searchBarFocused: .constant(false),
                          settingsChanged: .constant(false),
-                         selectedGenre: .constant("None"),
+                         selectedGenre: .constant("Any"),
                          selectedSort: .constant("Relevance"))
         }
     }

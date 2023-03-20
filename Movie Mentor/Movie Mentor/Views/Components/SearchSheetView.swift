@@ -7,7 +7,7 @@ struct SearchSheetView: View {
 
     var genres: [String] {
         var array = GenreTileView.allGenreNames
-        array.insert("None", at: 0)
+        array.insert("Any", at: 0)
         return array
     }
 
@@ -52,7 +52,7 @@ struct SearchSheetView: View {
 
 struct SearchSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchSheetView(selectedGenre: .constant("None"),
+        SearchSheetView(selectedGenre: .constant("Any"),
                         selectedSort: .constant("Relevance"),
                         showingSheet: .constant(true))
     }

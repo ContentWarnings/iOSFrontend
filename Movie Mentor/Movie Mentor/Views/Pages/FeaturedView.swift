@@ -60,7 +60,7 @@ struct ContentView_Previews: PreviewProvider {
             FeaturedView(selectedTab: .constant("Featured"),
                          searchBarFocused: .constant(false),
                          settingsChanged: .constant(false),
-                         selectedGenre: .constant("None"),
+                         selectedGenre: .constant("Any"),
                          selectedSort: .constant("Relevance"))
         }
     }

@@ -1,10 +1,13 @@
 import SwiftUI
 
+// TODO: AppIcon
+// TODO: Primary color navigation
+// TODO: Bug fix search results disappearing
 struct MainView: View {
     @State private var selectedTab = "Featured"
     @State private var searchBarFocused = false
     @State private var settingsChanged = false
-    @State private var selectedGenre = "None"
+    @State private var selectedGenre = "Any"
     @State private var selectedSort = "Relevance"
 
     init(selectedTab: String = "Featured", searchBarFocused: Bool = false) {

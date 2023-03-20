@@ -64,7 +64,7 @@ struct SearchView: View {
                             viewModel.performSearch()
                         }
                     LazyVStack(spacing: 0) {
-                        if searchString == "" && selectedGenre == "None" {
+                        if searchString == "" && selectedGenre == "Any" {
                             // Display genre tiles if user hasn't searched yet
                             ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
                                 Button {
@@ -121,7 +121,7 @@ struct SearchView_Previews: PreviewProvider {
             SearchView(selectedTab: .constant("Search"),
                        searchBarFocused: .constant(false),
                        settingsChanged: .constant(false),
-                       selectedGenre: .constant("None"),
+                       selectedGenre: .constant("Any"),
                        selectedSort: .constant("Relevance"))
         }
     }

@@ -20,10 +20,9 @@ class SearchViewModel: ObservableObject {
         self.isDoneLoading = false
         let parameters = [
             "q": self.query,
-            "genre": self.genre == "None" ? "Disregard" : self.genre,
+            "genre": self.genre == "Any" ? "Disregard" : self.genre,
             "sort": SearchViewModel.searchSortOptions[self.sort]!
         ]
-        print("TESTTESTTEST " + self.genre)
 
         AF.request("https://api.moviementor.app/search", parameters: parameters)
             .responseDecodable(of: SearchResponse.self) { response in
