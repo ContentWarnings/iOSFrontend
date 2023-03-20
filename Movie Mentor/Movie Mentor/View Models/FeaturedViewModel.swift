@@ -10,7 +10,7 @@ class FeaturedViewModel: ObservableObject {
     }
 
     func getTrendingMovies() {
-        AF.request("https://api.moviementor.app/search").responseDecodable(of: TrendingResponse.self) { response in
+        AF.request("https://api.moviementor.app/search").responseDecodable(of: SearchResponse.self) { response in
             switch response.result {
             case .success(let data):
                 self.movies = data.results

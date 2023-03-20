@@ -13,7 +13,7 @@ struct MovieReduced: Decodable, Identifiable {
     var releaseDate: Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.date(from: self.release)!
+        return dateFormatter.date(from: self.release) ?? Date.distantPast
     }
 
     var warnings: [ContentWarningReduced] {
@@ -27,6 +27,10 @@ struct MovieReduced: Decodable, Identifiable {
 
     // Returns a formatted  description string for displaying in search results
     func searchDescriptionString() -> String {
+        if self.releaseDate == Date.distantPast {
+            return overview
+        }
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy"
         let yearString = dateFormatter.string(from: self.releaseDate)

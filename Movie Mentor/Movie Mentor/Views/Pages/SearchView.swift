@@ -1,3 +1,4 @@
+import Alamofire
 import SwiftUI
 
 struct SearchView: View {
@@ -5,7 +6,18 @@ struct SearchView: View {
     @Binding var searchBarFocused: Bool
     @Binding var settingsChanged: Bool
 
-    @State private var searchString = ""
+    @State var searchString: String = ""
+
+    @ObservedObject var viewModel: SearchViewModel
+
+    init(selectedTab: Binding<String>,
+         searchBarFocused: Binding<Bool>,
+         settingsChanged: Binding<Bool>) {
+        self._selectedTab = selectedTab
+        self._searchBarFocused = searchBarFocused
+        self._settingsChanged = settingsChanged
+        self.viewModel = SearchViewModel(query: "")
+    }
 
     var body: some View {
         NavigationView {
@@ -16,6 +28,13 @@ struct SearchView: View {
                                   searchBarFocused: $searchBarFocused)
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
+                        .onChange(of: searchString) { newValue in
+                            Alamofire.Session.default.session.getAllTasks { tasks in
+                                tasks.forEach { $0.cancel() }
+                            }
+                            viewModel.query = newValue
+                            viewModel.performSearch()
+                        }
                     LazyVStack(spacing: 0) {
                         if searchString == "" {
                             // Display genre tiles if user hasn't searched yet
@@ -27,21 +46,24 @@ struct SearchView: View {
                             }
                         } else {
                             // Once user has searched, replace genre tiles with movie tiles
-                            // TODO: Replace with real API data
-                            ForEach(MovieReduced.testData) { movie in
-                                if !movie.shouldHide() {
-                                    NavigationLink(destination: NavigationLazyView(
-                                        MovieDetailsView(settingsChanged: $settingsChanged,
-                                                         movieId: movie.id, movieTitle: movie.title))) {
-                                        VStack(spacing: 0) {
-                                            SearchMovieTileView(settingsChanged: $settingsChanged, movie: movie)
-                                            Separator()
+                            if viewModel.isDoneLoading {
+                                ForEach(viewModel.searchResults) { movie in
+                                    if !movie.shouldHide() {
+                                        NavigationLink(destination: NavigationLazyView(
+                                            MovieDetailsView(settingsChanged: $settingsChanged,
+                                                             movieId: movie.id, movieTitle: movie.title))) {
+                                            VStack(spacing: 0) {
+                                                SearchMovieTileView(settingsChanged: $settingsChanged, movie: movie)
+                                                Separator()
+                                            }
                                         }
+                                        .buttonStyle(.plain)
                                     }
-                                    .buttonStyle(.plain)
                                 }
+                                SearchMovieTileView.FinalSearchTile()
+                            } else {
+                                ProgressView()
                             }
-                            SearchMovieTileView.FinalSearchTile()
                         }
                     }
                 }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct TrendingResponse: Decodable {
+struct SearchResponse: Decodable {
     var results: [MovieReduced]
 }
 
