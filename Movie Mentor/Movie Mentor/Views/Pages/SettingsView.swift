@@ -4,6 +4,8 @@ struct SettingsView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
     @Binding var settingsChanged: Bool
+    @Binding var selectedGenre: String
+    @Binding var selectedSort: String
 
     var body: some View {
         NavigationView {
@@ -12,7 +14,9 @@ struct SettingsView: View {
                     VStack {
                         SearchBarView(searchString: .constant(""),
                                       selectedTab: $selectedTab,
-                                      searchBarFocused: $searchBarFocused)
+                                      searchBarFocused: $searchBarFocused,
+                                      selectedGenre: $selectedGenre,
+                                      selectedSort: $selectedSort)
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
                         List {
@@ -43,7 +47,9 @@ struct SettingsView_Previews: PreviewProvider {
         NavigationView {
             SettingsView(selectedTab: .constant("Settings"),
                          searchBarFocused: .constant(false),
-                         settingsChanged: .constant(false))
+                         settingsChanged: .constant(false),
+                         selectedGenre: .constant("None"),
+                         selectedSort: .constant("Relevance"))
         }
     }
 }

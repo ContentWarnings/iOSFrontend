@@ -31,10 +31,14 @@ struct MovieFull: Decodable, Identifiable {
     var releaseDate: Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.date(from: self.release)!
+        return dateFormatter.date(from: self.release) ?? Date.distantPast
     }
 
     func releaseDateString() -> String {
+        if self.releaseDate == Date.distantPast {
+            return "Unknown"
+        }
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         return dateFormatter.string(from: self.releaseDate)

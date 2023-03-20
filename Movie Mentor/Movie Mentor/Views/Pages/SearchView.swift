@@ -5,6 +5,8 @@ struct SearchView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
     @Binding var settingsChanged: Bool
+    @Binding var selectedGenre: String
+    @Binding var selectedSort: String
 
     @State var searchString: String = ""
 
@@ -12,11 +14,15 @@ struct SearchView: View {
 
     init(selectedTab: Binding<String>,
          searchBarFocused: Binding<Bool>,
-         settingsChanged: Binding<Bool>) {
+         settingsChanged: Binding<Bool>,
+         selectedGenre: Binding<String>,
+         selectedSort: Binding<String>) {
         self._selectedTab = selectedTab
         self._searchBarFocused = searchBarFocused
         self._settingsChanged = settingsChanged
-        self.viewModel = SearchViewModel(query: "")
+        self._selectedGenre = selectedGenre
+        self._selectedSort = selectedSort
+        self.viewModel = SearchViewModel(query: "", genre: "Disregard", sort: "Relevance")
     }
 
     var body: some View {
@@ -25,7 +31,9 @@ struct SearchView: View {
                 VStack {
                     SearchBarView(searchString: $searchString,
                                   selectedTab: $selectedTab,
-                                  searchBarFocused: $searchBarFocused)
+                                  searchBarFocused: $searchBarFocused,
+                                  selectedGenre: $selectedGenre,
+                                  selectedSort: $selectedSort)
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
                         .onChange(of: searchString) { newValue in
@@ -33,14 +41,42 @@ struct SearchView: View {
                                 tasks.forEach { $0.cancel() }
                             }
                             viewModel.query = newValue
+                            viewModel.genre = selectedGenre
+                            viewModel.sort = selectedSort
+                            viewModel.performSearch()
+                        }
+                        .onChange(of: selectedGenre) { newValue in
+                            Alamofire.Session.default.session.getAllTasks { tasks in
+                                tasks.forEach { $0.cancel() }
+                            }
+                            viewModel.query = searchString
+                            viewModel.genre = newValue
+                            viewModel.sort = selectedSort
+                            viewModel.performSearch()
+                        }
+                        .onChange(of: selectedSort) { newValue in
+                            Alamofire.Session.default.session.getAllTasks { tasks in
+                                tasks.forEach { $0.cancel() }
+                            }
+                            viewModel.query = searchString
+                            viewModel.genre = selectedGenre
+                            viewModel.sort = newValue
                             viewModel.performSearch()
                         }
                     LazyVStack(spacing: 0) {
-                        if searchString == "" {
+                        if searchString == "" && selectedGenre == "None" {
                             // Display genre tiles if user hasn't searched yet
                             ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
-                                // TODO: Make each tile tappable to search genre
-                                GenreTileView(genre: genre)
+                                Button {
+                                    selectedGenre = genre
+
+                                    viewModel.query = searchString
+                                    viewModel.genre = selectedGenre
+                                    viewModel.sort = selectedSort
+                                    viewModel.performSearch()
+                                } label: {
+                                    GenreTileView(genre: genre)
+                                }
                                 .padding(.horizontal, 24.0)
                                 .padding(.vertical, 6.0)
                             }
@@ -61,6 +97,7 @@ struct SearchView: View {
                                     }
                                 }
                                 SearchMovieTileView.FinalSearchTile()
+                                // TODO: Pagination
                             } else {
                                 ProgressView()
                             }
@@ -83,7 +120,9 @@ struct SearchView_Previews: PreviewProvider {
         NavigationView {
             SearchView(selectedTab: .constant("Search"),
                        searchBarFocused: .constant(false),
-                       settingsChanged: .constant(false))
+                       settingsChanged: .constant(false),
+                       selectedGenre: .constant("None"),
+                       selectedSort: .constant("Relevance"))
         }
     }
 }

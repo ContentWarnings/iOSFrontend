@@ -4,6 +4,8 @@ struct FeaturedView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
     @Binding var settingsChanged: Bool
+    @Binding var selectedGenre: String
+    @Binding var selectedSort: String
 
     let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -18,7 +20,9 @@ struct FeaturedView: View {
                 VStack {
                     SearchBarView(searchString: .constant(""),
                                   selectedTab: $selectedTab,
-                                  searchBarFocused: $searchBarFocused)
+                                  searchBarFocused: $searchBarFocused,
+                                  selectedGenre: $selectedGenre,
+                                  selectedSort: $selectedSort)
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
                     if viewModel.isDoneLoading {
@@ -55,7 +59,9 @@ struct ContentView_Previews: PreviewProvider {
         NavigationView {
             FeaturedView(selectedTab: .constant("Featured"),
                          searchBarFocused: .constant(false),
-                         settingsChanged: .constant(false))
+                         settingsChanged: .constant(false),
+                         selectedGenre: .constant("None"),
+                         selectedSort: .constant("Relevance"))
         }
     }
 }

@@ -73,13 +73,19 @@ struct MovieDetailsView: View {
                         .font(Font.custom("Roboto-Bold", size: 32))
                         .padding(.horizontal, 25.0)
                         .padding(.bottom, 6.0)
-                    LazyVStack {
-                        ForEach(viewModel.movie.cw.sorted()) { warning in
-                            NavigationLink(destination: NavigationLazyView(WarningDetailsView(warning: warning))) {
-                                WarningRowView(settingsChanged: $settingsChanged, warning: warning)
-                                    .padding(.horizontal, 25.0)
+                    if viewModel.movie.cw.count == 0 {
+                        Text("No warnings submitted for this movie.")
+                            .font(Font.custom("Roboto-Regular", size: 21))
+                            .padding(.horizontal, 25.0)
+                    } else {
+                        LazyVStack {
+                            ForEach(viewModel.movie.cw.sorted()) { warning in
+                                NavigationLink(destination: NavigationLazyView(WarningDetailsView(warning: warning))) {
+                                    WarningRowView(settingsChanged: $settingsChanged, warning: warning)
+                                        .padding(.horizontal, 25.0)
+                                }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
                     }
                 }
