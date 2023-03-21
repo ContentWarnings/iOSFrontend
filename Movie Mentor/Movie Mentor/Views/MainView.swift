@@ -1,8 +1,6 @@
 import SwiftUI
 
 // TODO: AppIcon
-// TODO: Primary color navigation
-// TODO: Bug fix search results disappearing
 struct MainView: View {
     @State private var selectedTab = "Featured"
     @State private var searchBarFocused = false

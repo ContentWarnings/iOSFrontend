@@ -3,7 +3,7 @@ import SwiftUI
 struct WarningSettingsView: View {
     @State private var searchString = ""
     @Binding var settingsChanged: Bool
-    @ObservedObject var viewModel = WarningSettingsViewModel()
+    @StateObject var viewModel = WarningSettingsViewModel()
 
     let userDefaults = UserDefaults.standard
 

@@ -16,7 +16,11 @@ class SearchViewModel: ObservableObject {
         self.sort = sort
     }
 
-    func performSearch() {
+    func performSearch(query: String, genre: String, sort: String) {
+        self.query = query
+        self.genre = genre
+        self.sort = sort
+
         self.isDoneLoading = false
         let parameters = [
             "q": self.query,
@@ -34,6 +38,12 @@ class SearchViewModel: ObservableObject {
                     debugPrint(error)
                 }
             }
+    }
+
+    func cancelAllRequests() {
+        Alamofire.Session.default.session.getAllTasks { tasks in
+            tasks.forEach { $0.cancel() }
+        }
     }
 }
 

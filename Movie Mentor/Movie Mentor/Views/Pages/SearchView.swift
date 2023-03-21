@@ -10,7 +10,7 @@ struct SearchView: View {
 
     @State var searchString: String = ""
 
-    @ObservedObject var viewModel: SearchViewModel
+    @StateObject var viewModel: SearchViewModel
 
     init(selectedTab: Binding<String>,
          searchBarFocused: Binding<Bool>,
@@ -22,7 +22,7 @@ struct SearchView: View {
         self._settingsChanged = settingsChanged
         self._selectedGenre = selectedGenre
         self._selectedSort = selectedSort
-        self.viewModel = SearchViewModel(query: "", genre: "Disregard", sort: "Relevance")
+        self._viewModel = StateObject(wrappedValue: SearchViewModel(query: "", genre: "Disregard", sort: "Relevance"))
     }
 
     var body: some View {
@@ -37,31 +37,16 @@ struct SearchView: View {
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
                         .onChange(of: searchString) { newValue in
-                            Alamofire.Session.default.session.getAllTasks { tasks in
-                                tasks.forEach { $0.cancel() }
-                            }
-                            viewModel.query = newValue
-                            viewModel.genre = selectedGenre
-                            viewModel.sort = selectedSort
-                            viewModel.performSearch()
+                            viewModel.cancelAllRequests()
+                            viewModel.performSearch(query: newValue, genre: selectedGenre, sort: selectedSort)
                         }
                         .onChange(of: selectedGenre) { newValue in
-                            Alamofire.Session.default.session.getAllTasks { tasks in
-                                tasks.forEach { $0.cancel() }
-                            }
-                            viewModel.query = searchString
-                            viewModel.genre = newValue
-                            viewModel.sort = selectedSort
-                            viewModel.performSearch()
+                            viewModel.cancelAllRequests()
+                            viewModel.performSearch(query: searchString, genre: newValue, sort: selectedSort)
                         }
                         .onChange(of: selectedSort) { newValue in
-                            Alamofire.Session.default.session.getAllTasks { tasks in
-                                tasks.forEach { $0.cancel() }
-                            }
-                            viewModel.query = searchString
-                            viewModel.genre = selectedGenre
-                            viewModel.sort = newValue
-                            viewModel.performSearch()
+                            viewModel.cancelAllRequests()
+                            viewModel.performSearch(query: searchString, genre: selectedGenre, sort: newValue)
                         }
                     LazyVStack(spacing: 0) {
                         if searchString == "" && selectedGenre == "Any" {
@@ -69,11 +54,9 @@ struct SearchView: View {
                             ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
                                 Button {
                                     selectedGenre = genre
-
-                                    viewModel.query = searchString
-                                    viewModel.genre = selectedGenre
-                                    viewModel.sort = selectedSort
-                                    viewModel.performSearch()
+                                    viewModel.performSearch(query: searchString,
+                                                            genre: selectedGenre,
+                                                            sort: selectedSort)
                                 } label: {
                                     GenreTileView(genre: genre)
                                 }
@@ -85,15 +68,18 @@ struct SearchView: View {
                             if viewModel.isDoneLoading {
                                 ForEach(viewModel.searchResults) { movie in
                                     if !movie.shouldHide() {
-                                        NavigationLink(destination: NavigationLazyView(
-                                            MovieDetailsView(settingsChanged: $settingsChanged,
-                                                             movieId: movie.id, movieTitle: movie.title))) {
-                                            VStack(spacing: 0) {
-                                                SearchMovieTileView(settingsChanged: $settingsChanged, movie: movie)
-                                                Separator()
-                                            }
+                                        VStack(spacing: 0) {
+                                            NavigationLink(destination: NavigationLazyView(
+                                                MovieDetailsView(settingsChanged: $settingsChanged,
+                                                                 movieId: movie.id,
+                                                                 movieTitle: movie.title))) {
+                                                                     SearchMovieTileView(
+                                                                        settingsChanged: $settingsChanged,
+                                                                        movie: movie)
+                                                                 }
+                                                                 .buttonStyle(.plain)
+                                            Separator()
                                         }
-                                        .buttonStyle(.plain)
                                     }
                                 }
                                 SearchMovieTileView.FinalSearchTile()
