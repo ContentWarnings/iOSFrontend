@@ -1,3 +1,5 @@
+// https://www.donnywals.com/implementing-an-infinite-scrolling-list-with-swiftui-and-combine/
+
 import Alamofire
 import SwiftUI
 import Foundation
@@ -5,10 +7,14 @@ import Foundation
 class SearchViewModel: ObservableObject {
     @Published var searchResults = [MovieReduced]()
     @Published var isDoneLoading = true
+    @Published var isLoadingNextPage = false
 
     var query: String
     var genre: String
     var sort: String
+
+    private var canLoadMorePages = true
+    private var currentPage = 1
 
     init(query: String, genre: String, sort: String) {
         self.query = query
@@ -22,6 +28,9 @@ class SearchViewModel: ObservableObject {
         self.sort = sort
 
         self.isDoneLoading = false
+        self.canLoadMorePages = true
+        self.currentPage = 1
+
         let parameters = [
             "q": self.query,
             "genre": self.genre == "Any" ? "Disregard" : self.genre,
@@ -34,6 +43,45 @@ class SearchViewModel: ObservableObject {
                 case .success(let data):
                     self.searchResults = data.results
                     self.isDoneLoading = true
+                case .failure(let error):
+                    debugPrint(error)
+                }
+            }
+    }
+
+    func loadNextPageIfNeeded(currentItem: MovieReduced) {
+        let thresholdIndex = searchResults.index(searchResults.endIndex, offsetBy: -5)
+        if searchResults.firstIndex(where: { $0.id == currentItem.id }) == thresholdIndex {
+            loadNextPage()
+        }
+    }
+
+    func loadNextPage() {
+        guard !isLoadingNextPage && canLoadMorePages else {
+            return
+        }
+
+        self.isLoadingNextPage = true
+        self.currentPage += 1
+
+        let parameters = [
+            "q": self.query,
+            "p": self.currentPage.description,
+            "genre": self.genre == "Any" ? "Disregard" : self.genre,
+            "sort": SearchViewModel.searchSortOptions[self.sort]!
+        ]
+
+        AF.request("https://api.moviementor.app/search", parameters: parameters)
+            .responseDecodable(of: SearchResponse.self) { response in
+                switch response.result {
+                case .success(let data):
+                    self.isLoadingNextPage = false
+
+                    if data.results.count > 0 {
+                        self.searchResults += data.results
+                    } else {
+                        self.canLoadMorePages = false
+                    }
                 case .failure(let error):
                     debugPrint(error)
                 }

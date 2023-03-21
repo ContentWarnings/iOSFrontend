@@ -80,10 +80,16 @@ struct SearchView: View {
                                                                  .buttonStyle(.plain)
                                             Separator()
                                         }
+                                        .onAppear {
+                                            viewModel.loadNextPageIfNeeded(currentItem: movie)
+                                        }
                                     }
                                 }
-                                SearchMovieTileView.FinalSearchTile()
-                                // TODO: Pagination
+                                if viewModel.isLoadingNextPage {
+                                    ProgressView()
+                                } else {
+                                    SearchMovieTileView.FinalSearchTile()
+                                }
                             } else {
                                 ProgressView()
                             }
