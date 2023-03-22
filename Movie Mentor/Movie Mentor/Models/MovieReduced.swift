@@ -22,7 +22,7 @@ struct MovieReduced: Decodable, Identifiable {
             array.append(ContentWarningReduced(name: warning))
         }
 
-        return array.sorted()
+        return Array(Set(array)).sorted()
     }
 
     // Returns a formatted  description string for displaying in search results

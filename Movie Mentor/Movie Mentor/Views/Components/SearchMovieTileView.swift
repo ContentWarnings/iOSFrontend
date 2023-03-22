@@ -47,6 +47,10 @@ struct SearchMovieTileView: View {
                         ForEach(movie.warnings) { warning in
                             CWTagView(settingsChanged: $settingsChanged, warning: warning)
                         }
+                        if movie.warnings.count == 0 {
+                            CWTagView(settingsChanged: .constant(false),
+                                      warning: ContentWarningReduced(name: "No Warnings Found"))
+                        }
                     }
                     .frame(height: 20.0)
                     .padding(.top, 1.0)

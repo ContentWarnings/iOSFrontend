@@ -1,6 +1,6 @@
 import Foundation
 
-struct ContentWarningReduced: Comparable, Decodable, Identifiable {
+struct ContentWarningReduced: Comparable, Decodable, Identifiable, Hashable {
     var id = UUID()
     var name: String
 
@@ -19,7 +19,11 @@ struct ContentWarningReduced: Comparable, Decodable, Identifiable {
     }
 
     static func == (lhs: ContentWarningReduced, rhs: ContentWarningReduced) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.name == rhs.name
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
     }
 
     func shouldHide() -> Bool {
