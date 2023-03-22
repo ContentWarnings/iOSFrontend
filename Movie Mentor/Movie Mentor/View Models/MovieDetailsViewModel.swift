@@ -13,7 +13,7 @@ class MovieDetailsViewModel: ObservableObject {
     }
 
     func getMovie() {
-        AF.request("https://api.moviementor.app/movie/" + movieId.description)
+        AF.request(apiURL + "movie/" + movieId.description)
             .responseDecodable(of: MovieFull.self) { response in
                 switch response.result {
                 case .success(let data):

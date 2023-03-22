@@ -10,7 +10,7 @@ class WarningSettingsViewModel: ObservableObject {
     }
 
     func getWarningNames() {
-        AF.request("https://api.moviementor.app/names").responseDecodable(of: NamesResponse.self) { response in
+        AF.request(apiURL + "names").responseDecodable(of: NamesResponse.self) { response in
             switch response.result {
             case .success(let data):
                 self.warningNames = data.cws.sorted()

@@ -8,7 +8,7 @@ struct Movie_MentorApp: App {
 
         // If default values have not been initalized, set all preferences to "show"
         if !userDefaults.bool(forKey: "DefaultsSet") {
-            AF.request("https://api.moviementor.app/names").responseDecodable(of: NamesResponse.self) { response in
+            AF.request(apiURL + "names").responseDecodable(of: NamesResponse.self) { response in
                 switch response.result {
                 case .success(let data):
                     for warning in data.cws where userDefaults.value(forKey: warning) == nil {

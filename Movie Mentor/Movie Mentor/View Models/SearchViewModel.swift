@@ -37,7 +37,7 @@ class SearchViewModel: ObservableObject {
             "sort": SearchViewModel.searchSortOptions[self.sort]!
         ]
 
-        AF.request("https://api.moviementor.app/search", parameters: parameters)
+        AF.request(apiURL + "search", parameters: parameters)
             .responseDecodable(of: SearchResponse.self) { response in
                 switch response.result {
                 case .success(let data):
@@ -88,7 +88,7 @@ class SearchViewModel: ObservableObject {
             "sort": SearchViewModel.searchSortOptions[self.sort]!
         ]
 
-        AF.request("https://api.moviementor.app/search", parameters: parameters)
+        AF.request(apiURL + "search", parameters: parameters)
             .responseDecodable(of: SearchResponse.self) { response in
                 switch response.result {
                 case .success(let data):

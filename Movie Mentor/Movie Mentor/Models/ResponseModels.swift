@@ -11,3 +11,5 @@ struct NamesResponse: Decodable {
 struct StringResponse: Decodable {
     var response: String
 }
+
+let apiURL = "https://api.moviementor.app/"
