@@ -9,7 +9,7 @@ struct AboutSettingsView: View {
             NavigationLink(destination: AttributionView()) {
                 SettingsRow(imageName: "app.connected.to.app.below.fill", rowText: "Attribution")
             }
-            NavigationLink(destination: Text("Test")) {
+            NavigationLink(destination: PrivacyPolicyView()) {
                 SettingsRow(imageName: "hand.raised.fill", rowText: "Privacy Policy")
             }
             NavigationLink(destination: Text("Test")) {
