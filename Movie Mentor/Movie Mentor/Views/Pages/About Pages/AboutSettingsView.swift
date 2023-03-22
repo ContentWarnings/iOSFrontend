@@ -6,7 +6,7 @@ struct AboutSettingsView: View {
             NavigationLink(destination: AboutView()) {
                 SettingsRow(imageName: "info.circle.fill", rowText: "About")
             }
-            NavigationLink(destination: Text("Test")) {
+            NavigationLink(destination: AttributionView()) {
                 SettingsRow(imageName: "app.connected.to.app.below.fill", rowText: "Attribution")
             }
             NavigationLink(destination: Text("Test")) {
