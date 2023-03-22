@@ -8,6 +8,6 @@ struct NamesResponse: Decodable {
     var cws: [String]
 }
 
-struct DescriptionsResponse: Decodable {
+struct StringResponse: Decodable {
     var response: String
 }

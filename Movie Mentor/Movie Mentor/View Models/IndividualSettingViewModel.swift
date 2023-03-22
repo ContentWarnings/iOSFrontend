@@ -16,7 +16,7 @@ class IndividualSettingViewModel: ObservableObject {
         let parameters = ["name": self.warningName]
 
         AF.request("https://api.moviementor.app/descriptions", parameters: parameters)
-            .responseDecodable(of: DescriptionsResponse.self) { response in
+            .responseDecodable(of: StringResponse.self) { response in
                 switch response.result {
                 case .success(let data):
                     self.description = data.response

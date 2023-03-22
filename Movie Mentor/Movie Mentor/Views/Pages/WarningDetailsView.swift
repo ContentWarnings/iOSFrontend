@@ -3,6 +3,13 @@ import SwiftUI
 struct WarningDetailsView: View {
     let warning: ContentWarning
 
+    @ObservedObject var viewModel: WarningDetailViewModel
+
+    init(warning: ContentWarning) {
+        self.warning = warning
+        self.viewModel = WarningDetailViewModel(warning: warning)
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -20,7 +27,9 @@ struct WarningDetailsView: View {
                     .padding(.bottom)
                 Text("Submit Feedback")
                     .font(Font.custom("Roboto-Bold", size: 32))
-                Button(action: {}, label: { // TODO: Conect to API
+                Button {
+                    viewModel.upvote()
+                } label: {
                     HStack {
                         Image(systemName: "checkmark")
                             .font(.system(size: 40))
@@ -34,10 +43,13 @@ struct WarningDetailsView: View {
                     .background {
                         RoundedRectangle(cornerRadius: 11)
                             .foregroundColor(Color("ShowAction"))
+                            .opacity(viewModel.didUpvote ? 0.2 : 1.0)
                     }
-                })
+                }
                 .buttonStyle(.plain)
-                Button(action: {}, label: { // TODO: Connect to API
+                Button {
+                    viewModel.downvote()
+                } label: {
                     HStack {
                         Image(systemName: "xmark")
                             .font(.system(size: 40))
@@ -51,8 +63,9 @@ struct WarningDetailsView: View {
                     .background {
                         RoundedRectangle(cornerRadius: 11)
                             .foregroundColor(Color("HideAction"))
+                            .opacity(viewModel.didDownvote ? 0.2 : 1.0)
                     }
-                })
+                }
                 .buttonStyle(.plain)
             }
             .padding(.horizontal, 25.0)

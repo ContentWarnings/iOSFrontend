@@ -1,6 +1,5 @@
 import SwiftUI
 
-// TODO: AppIcon
 struct MainView: View {
     @State private var selectedTab = "Featured"
     @State private var searchBarFocused = false
