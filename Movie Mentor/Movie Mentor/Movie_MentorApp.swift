@@ -4,6 +4,7 @@ import SwiftUI
 @main
 struct Movie_MentorApp: App {
     init() {
+        URLCache.shared.removeAllCachedResponses()
         let userDefaults = UserDefaults.standard
 
         // If default values have not been initalized, set all preferences to "show"
