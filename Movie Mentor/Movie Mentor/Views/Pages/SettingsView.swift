@@ -24,8 +24,9 @@ struct SettingsView: View {
                                 WarningSettingsView(settingsChanged: $settingsChanged))) {
                                 SettingsRow(imageName: "exclamationmark.triangle.fill", rowText: "Content Warnings")
                             }
-                            // TODO: Create about page
-                            SettingsRow(imageName: "info.circle.fill", rowText: "About")
+                            NavigationLink(destination: AboutSettingsView()) {
+                                SettingsRow(imageName: "info.circle.fill", rowText: "About")
+                            }
                         }
                         .frame(height: geometry.size.height - 60)
                         .environment(\.defaultMinListRowHeight, 50.0)
