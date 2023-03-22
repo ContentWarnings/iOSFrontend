@@ -12,7 +12,7 @@ struct AboutSettingsView: View {
             NavigationLink(destination: PrivacyPolicyView()) {
                 SettingsRow(imageName: "hand.raised.fill", rowText: "Privacy Policy")
             }
-            NavigationLink(destination: Text("Test")) {
+            NavigationLink(destination: TermsOfServiceView()) {
                 SettingsRow(imageName: "doc.text.fill", rowText: "Terms of Service")
             }
         }

@@ -28,6 +28,7 @@
 		0F95CB4429CB95C50050C2F2 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95CB4329CB95C50050C2F2 /* AboutView.swift */; };
 		0F95CB4629CB97C60050C2F2 /* AttributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95CB4529CB97C60050C2F2 /* AttributionView.swift */; };
 		0F95CB4829CB99420050C2F2 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95CB4729CB99420050C2F2 /* PrivacyPolicyView.swift */; };
+		0F95CB4A29CB9ACE0050C2F2 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95CB4929CB9ACE0050C2F2 /* TermsOfServiceView.swift */; };
 		0FC180CB29A3F3C20031DDAB /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC180CA29A3F3C20031DDAB /* MovieDetailsView.swift */; };
 		0FC180CD29A4091C0031DDAB /* WarningBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC180CC29A4091C0031DDAB /* WarningBannerView.swift */; };
 		0FC180CF29A4128E0031DDAB /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC180CE29A4128E0031DDAB /* StarRatingView.swift */; };
@@ -110,6 +111,7 @@
 		0F95CB4329CB95C50050C2F2 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		0F95CB4529CB97C60050C2F2 /* AttributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributionView.swift; sourceTree = "<group>"; };
 		0F95CB4729CB99420050C2F2 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		0F95CB4929CB9ACE0050C2F2 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		0FC180CA29A3F3C20031DDAB /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		0FC180CC29A4091C0031DDAB /* WarningBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningBannerView.swift; sourceTree = "<group>"; };
 		0FC180CE29A4128E0031DDAB /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				0F95CB4329CB95C50050C2F2 /* AboutView.swift */,
 				0F95CB4529CB97C60050C2F2 /* AttributionView.swift */,
 				0F95CB4729CB99420050C2F2 /* PrivacyPolicyView.swift */,
+				0F95CB4929CB9ACE0050C2F2 /* TermsOfServiceView.swift */,
 			);
 			path = "About Pages";
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				0F95CB3729C22E5D0050C2F2 /* MovieDetailsViewModel.swift in Sources */,
 				0FD761FE29943F460060EB7E /* SearchBarView.swift in Sources */,
 				0FD7620E29A2F1890060EB7E /* MovieFull.swift in Sources */,
+				0F95CB4A29CB9ACE0050C2F2 /* TermsOfServiceView.swift in Sources */,
 				0FE94CB52990212100095412 /* SearchView.swift in Sources */,
 				0F95CB2929BFFCB40050C2F2 /* ContentWarningReduced.swift in Sources */,
 				0FC180D529AA8B000031DDAB /* ContentWarning.swift in Sources */,
