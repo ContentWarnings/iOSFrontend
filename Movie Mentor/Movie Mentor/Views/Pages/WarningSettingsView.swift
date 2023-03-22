@@ -7,17 +7,22 @@ struct WarningSettingsView: View {
 
     let userDefaults = UserDefaults.standard
 
+    var filteredSettings: [String] {
+        return searchString == "" ? viewModel.warningNames : viewModel.warningNames.filter {
+            $0.lowercased().contains(searchString.lowercased())
+        }
+    }
+
     var body: some View {
         List {
             Section {
             } footer: {
-                // TODO: Make settings search functional
                 SettingsSearchBarView(searchString: $searchString)
                 .padding(.top, 10.0)
             }
 
             if viewModel.isDoneLoading {
-                ForEach(viewModel.warningNames, id: \.self) { warning in
+                ForEach(filteredSettings, id: \.self) { warning in
                     NavigationLink(destination: NavigationLazyView(
                         IndividualSettingView(settingsChanged: $settingsChanged,
                                               warningName: warning))) {
