@@ -11,12 +11,6 @@ struct SearchSheetView: View {
         return array
     }
 
-    let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {

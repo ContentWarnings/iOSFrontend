@@ -43,6 +43,7 @@ class SearchViewModel: ObservableObject {
                 case .success(let data):
                     var containsResults = false
 
+                    // Check if all movies need to be hidden
                     for movie in data.results where !movie.shouldHide() {
                         containsResults = true
                         break
@@ -52,8 +53,10 @@ class SearchViewModel: ObservableObject {
                         self.isDoneLoading = true
                         self.searchResults = data.results
                     } else if data.results.count == 0 {
+                        // Backend responded with no results, so don't check any more pages
                         self.canLoadMorePages = false
                     } else {
+                        // Backend returned results but they were all hidden, so try next page
                         self.loadNextPage()
                     }
                 case .failure(let error):
@@ -63,6 +66,7 @@ class SearchViewModel: ObservableObject {
     }
 
     func loadNextPageIfNeeded(currentItem: MovieReduced) {
+        // If the current item is 5 away from the last, start loading the next page
         let thresholdIndex = searchResults.index(searchResults.endIndex, offsetBy: -5)
         if searchResults.firstIndex(where: { $0.id == currentItem.id }) == thresholdIndex {
             loadNextPage()
@@ -90,6 +94,7 @@ class SearchViewModel: ObservableObject {
                 case .success(let data):
                     var containsResults = false
 
+                    // Check if all movies need to be hidden
                     for movie in data.results where !movie.shouldHide() {
                         containsResults = true
                         break
@@ -99,8 +104,11 @@ class SearchViewModel: ObservableObject {
                         self.isLoadingNextPage = false
                         self.searchResults += data.results
                     } else if data.results.count == 0 {
+                        // Backend responded with no results, so don't check any more pages
+                        self.isLoadingNextPage = false
                         self.canLoadMorePages = false
                     } else {
+                        // Backend returned results but they were all hidden, so try next page
                         self.loadNextPage()
                     }
                 case .failure(let error):

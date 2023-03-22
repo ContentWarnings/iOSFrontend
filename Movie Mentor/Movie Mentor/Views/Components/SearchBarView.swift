@@ -29,6 +29,7 @@ struct SearchBarView: View {
                     }
                 }
             Button {
+                // If button is tapped navigate to search and open sheet
                 searchBarFocused = false
                 selectedTab = "Search"
                 showingSheet.toggle()

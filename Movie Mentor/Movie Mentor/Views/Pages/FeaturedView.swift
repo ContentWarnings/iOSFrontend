@@ -12,7 +12,7 @@ struct FeaturedView: View {
         GridItem(.flexible())
     ]
 
-    @ObservedObject var viewModel = FeaturedViewModel()
+    @StateObject var viewModel = FeaturedViewModel()
 
     var body: some View {
         NavigationView {
@@ -31,7 +31,8 @@ struct FeaturedView: View {
                                 if !movie.shouldHide() {
                                     NavigationLink(destination: NavigationLazyView(
                                         MovieDetailsView(settingsChanged: $settingsChanged,
-                                                         movieId: movie.id, movieTitle: movie.title))) {
+                                                         movieId: movie.id,
+                                                         movieTitle: movie.title))) {
                                         FeaturedMovieTileView(movie: movie)
                                     }
                                     .buttonStyle(.plain)
@@ -41,6 +42,7 @@ struct FeaturedView: View {
                         .padding([.top, .leading, .trailing])
                     } else {
                         ProgressView()
+                            .frame(height: 100.0)
                     }
                 }
             }

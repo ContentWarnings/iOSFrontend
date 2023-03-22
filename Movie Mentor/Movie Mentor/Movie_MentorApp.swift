@@ -16,7 +16,6 @@ struct Movie_MentorApp: App {
                     }
 
                     userDefaults.set(true, forKey: "DefaultsSet")
-                    userDefaults.set(data.cws.count, forKey: "NumberOfWarnings")
                 case .failure(let error):
                     debugPrint(error)
                 }

@@ -22,6 +22,7 @@ struct MovieReduced: Decodable, Identifiable {
             array.append(ContentWarningReduced(name: warning))
         }
 
+        // Return sorted array with all duplicates removed
         return Array(Set(array)).sorted()
     }
 

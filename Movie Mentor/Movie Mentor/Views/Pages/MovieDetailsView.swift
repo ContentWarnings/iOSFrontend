@@ -91,6 +91,7 @@ struct MovieDetailsView: View {
                 }
             } else {
                 ProgressView()
+                    .frame(height: 100.0)
             }
         }
         .navigationTitle(movieTitle)

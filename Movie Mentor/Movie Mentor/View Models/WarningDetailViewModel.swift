@@ -44,7 +44,8 @@ class WarningDetailViewModel: ObservableObject {
         AF.request("https://api.moviementor.app/cw/" + warning.id + "/downvote")
             .responseDecodable(of: StringResponse.self) { response in
                 switch response.result {
-                case .success:
+                case .success(let data):
+                    debugPrint(data.response)
                     self.didUpvote = false
                     self.didDownvote = true
                 case .failure(let error):

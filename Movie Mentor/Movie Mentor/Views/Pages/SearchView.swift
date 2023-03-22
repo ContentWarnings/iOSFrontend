@@ -54,9 +54,6 @@ struct SearchView: View {
                             ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
                                 Button {
                                     selectedGenre = genre
-                                    viewModel.performSearch(query: searchString,
-                                                            genre: selectedGenre,
-                                                            sort: selectedSort)
                                 } label: {
                                     GenreTileView(genre: genre)
                                 }
@@ -87,11 +84,13 @@ struct SearchView: View {
                                 }
                                 if viewModel.isLoadingNextPage {
                                     ProgressView()
+                                        .frame(height: 100.0)
                                 } else {
                                     SearchMovieTileView.FinalSearchTile()
                                 }
                             } else {
                                 ProgressView()
+                                    .frame(height: 100.0)
                             }
                         }
                     }

@@ -16,6 +16,7 @@ struct MovieFull: Decodable, Identifiable {
     var streamingProviders: [[String]] {
         var array: [[String]] = []
 
+        // Format streaming provider info into 2D array for easy displaying
         for provider in self.streaming_info?.providers ?? [] {
             let string = provider[0].components(separatedBy: "- ")[1].capitalized
             array.append(Array([string, provider[1]]))
