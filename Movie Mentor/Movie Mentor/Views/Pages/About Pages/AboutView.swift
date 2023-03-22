@@ -12,7 +12,7 @@ struct AboutView: View {
                     Computer Science at the University of Central Florida.
 
                     We wanted to create a place where users could gain more detailed information on potential trauma \
-                    and content sensitivities found in certain movies. The MPAA rating system has a general guideline \
+                    and content sensitivities found in certain movies. The MPA rating system has a general guideline \
                     for ages and content found in movies, but has been subject to differing classification over the \
                     years making it merely a starting point. We have also used sites like Common Sense Media and Does \
                     the Dog Die, however we found that they focused on parental guidance and extremely traumatic \
