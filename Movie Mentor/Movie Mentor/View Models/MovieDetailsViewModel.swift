@@ -13,7 +13,7 @@ class MovieDetailsViewModel: ObservableObject {
     }
 
     func getMovie() {
-        AF.request(apiURL + "movie/" + movieId.description)
+        AF.request(apiURL + "movie/" + movieId.description).cacheResponse(using: .doNotCache)
             .responseDecodable(of: MovieFull.self) { response in
                 switch response.result {
                 case .success(let data):

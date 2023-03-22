@@ -10,14 +10,15 @@ class FeaturedViewModel: ObservableObject {
     }
 
     func getTrendingMovies() {
-        AF.request(apiURL + "search").responseDecodable(of: SearchResponse.self) { response in
-            switch response.result {
-            case .success(let data):
-                self.movies = data.results
-                self.isDoneLoading = true
-            case .failure(let error):
-                debugPrint(error)
+        AF.request(apiURL + "search").cacheResponse(using: .doNotCache)
+            .responseDecodable(of: SearchResponse.self) { response in
+                switch response.result {
+                case .success(let data):
+                    self.movies = data.results
+                    self.isDoneLoading = true
+                case .failure(let error):
+                    debugPrint(error)
+                }
             }
-        }
     }
 }

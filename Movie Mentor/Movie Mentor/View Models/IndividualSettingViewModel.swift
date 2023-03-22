@@ -15,7 +15,7 @@ class IndividualSettingViewModel: ObservableObject {
     func getDescription() {
         let parameters = ["name": self.warningName]
 
-        AF.request(apiURL + "descriptions", parameters: parameters)
+        AF.request(apiURL + "descriptions", parameters: parameters).cacheResponse(using: .doNotCache)
             .responseDecodable(of: StringResponse.self) { response in
                 switch response.result {
                 case .success(let data):
