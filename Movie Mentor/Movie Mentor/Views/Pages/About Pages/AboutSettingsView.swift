@@ -3,7 +3,7 @@ import SwiftUI
 struct AboutSettingsView: View {
     var body: some View {
             List {
-            NavigationLink(destination: Text("Test")) {
+            NavigationLink(destination: AboutView()) {
                 SettingsRow(imageName: "info.circle.fill", rowText: "About")
             }
             NavigationLink(destination: Text("Test")) {
