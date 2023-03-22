@@ -17,8 +17,9 @@ struct FeaturedMovieTileView: View {
             Text(movie.title)
                 .font(Font.custom("Roboto-Medium", size: 22))
                 .lineLimit(2)
+                .multilineTextAlignment(.leading)
+                .frame(height: 55.0, alignment: .top)
         }
-        .frame(width: 160.0)
     }
 }
 

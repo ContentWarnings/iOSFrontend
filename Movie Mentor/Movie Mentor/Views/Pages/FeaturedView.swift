@@ -4,13 +4,15 @@ struct FeaturedView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
     @Binding var settingsChanged: Bool
+    @Binding var selectedGenre: String
+    @Binding var selectedSort: String
 
     let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    // TODO: Replace with real API data
-    let movies: [MovieReduced] = MovieReduced.testData
+
+    @StateObject var viewModel = FeaturedViewModel()
 
     var body: some View {
         NavigationView {
@@ -18,21 +20,30 @@ struct FeaturedView: View {
                 VStack {
                     SearchBarView(searchString: .constant(""),
                                   selectedTab: $selectedTab,
-                                  searchBarFocused: $searchBarFocused)
+                                  searchBarFocused: $searchBarFocused,
+                                  selectedGenre: $selectedGenre,
+                                  selectedSort: $selectedSort)
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
-                    LazyVGrid(columns: columns) {
-                        ForEach(movies) { movie in
-                            if !movie.shouldHide() {
-                                NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
-                                                                             movie: MovieFull.testData)) {
-                                    FeaturedMovieTileView(movie: movie)
+                    if viewModel.isDoneLoading {
+                        LazyVGrid(columns: columns) {
+                            ForEach(viewModel.movies) { movie in
+                                if !movie.shouldHide() {
+                                    NavigationLink(destination: NavigationLazyView(
+                                        MovieDetailsView(settingsChanged: $settingsChanged,
+                                                         movieId: movie.id,
+                                                         movieTitle: movie.title))) {
+                                        FeaturedMovieTileView(movie: movie)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
+                        .padding([.top, .leading, .trailing])
+                    } else {
+                        ProgressView()
+                            .frame(height: 100.0)
                     }
-                    .padding([.top, .leading, .trailing])
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -50,7 +61,9 @@ struct ContentView_Previews: PreviewProvider {
         NavigationView {
             FeaturedView(selectedTab: .constant("Featured"),
                          searchBarFocused: .constant(false),
-                         settingsChanged: .constant(false))
+                         settingsChanged: .constant(false),
+                         selectedGenre: .constant("Any"),
+                         selectedSort: .constant("Relevance"))
         }
     }
 }

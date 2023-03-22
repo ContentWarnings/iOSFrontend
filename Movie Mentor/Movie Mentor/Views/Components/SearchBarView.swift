@@ -5,6 +5,10 @@ struct SearchBarView: View {
     @FocusState private var fieldIsFocused: Bool
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
+    @Binding var selectedGenre: String
+    @Binding var selectedSort: String
+
+    @State private var showingSheet = false
 
     var body: some View {
         HStack {
@@ -24,6 +28,21 @@ struct SearchBarView: View {
                         selectedTab = "Search"
                     }
                 }
+            Button {
+                // If button is tapped navigate to search and open sheet
+                searchBarFocused = false
+                selectedTab = "Search"
+                showingSheet.toggle()
+            } label: {
+                Image(systemName: "line.3.horizontal.decrease.circle")
+                    .tint(selectedGenre == "Any" && selectedSort == "Relevance" ?
+                          Color("SearchBarText") : Color("Primary"))
+            }
+            .sheet(isPresented: $showingSheet) {
+                SearchSheetView(selectedGenre: $selectedGenre,
+                                selectedSort: $selectedSort,
+                                showingSheet: $showingSheet)
+            }
         }
         .padding(10.0)
         .background(RoundedRectangle(cornerRadius: 11 ).fill(Color("SearchBarBackground")).opacity(0.24))
@@ -54,7 +73,9 @@ struct SearchBarView_Previews: PreviewProvider {
         VStack {
             SearchBarView(searchString: .constant(""),
                           selectedTab: .constant("Search"),
-                          searchBarFocused: .constant(false))
+                          searchBarFocused: .constant(false),
+                          selectedGenre: .constant("Any"),
+                          selectedSort: .constant("Relevance"))
                 .frame(width: 343.0, height: 37.0)
             SettingsSearchBarView(searchString: .constant(""))
                 .frame(width: 343.0, height: 37.0)

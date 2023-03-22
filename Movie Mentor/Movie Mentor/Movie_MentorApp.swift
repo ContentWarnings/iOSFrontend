@@ -1,3 +1,4 @@
+import Alamofire
 import SwiftUI
 
 @main
@@ -7,12 +8,18 @@ struct Movie_MentorApp: App {
 
         // If default values have not been initalized, set all preferences to "show"
         if !userDefaults.bool(forKey: "DefaultsSet") {
-            // TODO: Update to full warning list from API
-            for warning in ContentWarning.testData where userDefaults.value(forKey: warning.name) == nil {
-                userDefaults.set(ContentWarning.WarningSetting.show.rawValue, forKey: warning.name)
-            }
+            AF.request(apiURL + "names").responseDecodable(of: NamesResponse.self) { response in
+                switch response.result {
+                case .success(let data):
+                    for warning in data.cws where userDefaults.value(forKey: warning) == nil {
+                        userDefaults.set(ContentWarning.WarningSetting.show.rawValue, forKey: warning)
+                    }
 
-            userDefaults.set(true, forKey: "DefaultsSet")
+                    userDefaults.set(true, forKey: "DefaultsSet")
+                case .failure(let error):
+                    debugPrint(error)
+                }
+            }
         }
     }
 

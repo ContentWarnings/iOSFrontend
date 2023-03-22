@@ -1,11 +1,29 @@
+import Alamofire
 import SwiftUI
 
 struct SearchView: View {
     @Binding var selectedTab: String
     @Binding var searchBarFocused: Bool
     @Binding var settingsChanged: Bool
+    @Binding var selectedGenre: String
+    @Binding var selectedSort: String
 
-    @State private var searchString = ""
+    @State var searchString: String = ""
+
+    @StateObject var viewModel: SearchViewModel
+
+    init(selectedTab: Binding<String>,
+         searchBarFocused: Binding<Bool>,
+         settingsChanged: Binding<Bool>,
+         selectedGenre: Binding<String>,
+         selectedSort: Binding<String>) {
+        self._selectedTab = selectedTab
+        self._searchBarFocused = searchBarFocused
+        self._settingsChanged = settingsChanged
+        self._selectedGenre = selectedGenre
+        self._selectedSort = selectedSort
+        self._viewModel = StateObject(wrappedValue: SearchViewModel(query: "", genre: "Disregard", sort: "Relevance"))
+    }
 
     var body: some View {
         NavigationView {
@@ -13,34 +31,67 @@ struct SearchView: View {
                 VStack {
                     SearchBarView(searchString: $searchString,
                                   selectedTab: $selectedTab,
-                                  searchBarFocused: $searchBarFocused)
+                                  searchBarFocused: $searchBarFocused,
+                                  selectedGenre: $selectedGenre,
+                                  selectedSort: $selectedSort)
                         .padding(.horizontal, 22.0)
                         .padding(.top, 10.0)
+                        .onChange(of: searchString) { newValue in
+                            viewModel.cancelAllRequests()
+                            viewModel.performSearch(query: newValue, genre: selectedGenre, sort: selectedSort)
+                        }
+                        .onChange(of: selectedGenre) { newValue in
+                            viewModel.cancelAllRequests()
+                            viewModel.performSearch(query: searchString, genre: newValue, sort: selectedSort)
+                        }
+                        .onChange(of: selectedSort) { newValue in
+                            viewModel.cancelAllRequests()
+                            viewModel.performSearch(query: searchString, genre: selectedGenre, sort: newValue)
+                        }
                     LazyVStack(spacing: 0) {
-                        if searchString == "" {
+                        if searchString == "" && selectedGenre == "Any" {
                             // Display genre tiles if user hasn't searched yet
                             ForEach(GenreTileView.allGenreNames, id: \.self) { genre in
-                                // TODO: Make each tile tappable to search genre
-                                GenreTileView(genre: genre)
+                                Button {
+                                    selectedGenre = genre
+                                } label: {
+                                    GenreTileView(genre: genre)
+                                }
                                 .padding(.horizontal, 24.0)
                                 .padding(.vertical, 6.0)
                             }
                         } else {
                             // Once user has searched, replace genre tiles with movie tiles
-                            // TODO: Replace with real API data
-                            ForEach(MovieReduced.testData) { movie in
-                                if !movie.shouldHide() {
-                                    NavigationLink(destination: MovieDetailsView(settingsChanged: $settingsChanged,
-                                                                                 movie: MovieFull.testData)) {
+                            if viewModel.isDoneLoading {
+                                ForEach(viewModel.searchResults) { movie in
+                                    if !movie.shouldHide() {
                                         VStack(spacing: 0) {
-                                            SearchMovieTileView(settingsChanged: $settingsChanged, movie: movie)
+                                            NavigationLink(destination: NavigationLazyView(
+                                                MovieDetailsView(settingsChanged: $settingsChanged,
+                                                                 movieId: movie.id,
+                                                                 movieTitle: movie.title))) {
+                                                                     SearchMovieTileView(
+                                                                        settingsChanged: $settingsChanged,
+                                                                        movie: movie)
+                                                                 }
+                                                                 .buttonStyle(.plain)
                                             Separator()
                                         }
+                                        .onAppear {
+                                            viewModel.loadNextPageIfNeeded(currentItem: movie)
+                                        }
                                     }
-                                    .buttonStyle(.plain)
                                 }
+                                if viewModel.isLoadingNextPage {
+                                    ProgressView()
+                                        .frame(height: 100.0)
+                                } else {
+                                    SearchMovieTileView.FinalSearchTile()
+                                }
+                            } else {
+                                ProgressView()
+                                    .frame(height: 100.0)
                             }
-                            SearchMovieTileView.FinalSearchTile()
                         }
                     }
                 }
@@ -60,7 +111,9 @@ struct SearchView_Previews: PreviewProvider {
         NavigationView {
             SearchView(selectedTab: .constant("Search"),
                        searchBarFocused: .constant(false),
-                       settingsChanged: .constant(false))
+                       settingsChanged: .constant(false),
+                       selectedGenre: .constant("Any"),
+                       selectedSort: .constant("Relevance"))
         }
     }
 }

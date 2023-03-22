@@ -4,6 +4,8 @@ struct MainView: View {
     @State private var selectedTab = "Featured"
     @State private var searchBarFocused = false
     @State private var settingsChanged = false
+    @State private var selectedGenre = "Any"
+    @State private var selectedSort = "Relevance"
 
     init(selectedTab: String = "Featured", searchBarFocused: Bool = false) {
         self.selectedTab = selectedTab
@@ -21,7 +23,9 @@ struct MainView: View {
         TabView(selection: $selectedTab) {
             FeaturedView(selectedTab: $selectedTab,
                          searchBarFocused: $searchBarFocused,
-                         settingsChanged: $settingsChanged)
+                         settingsChanged: $settingsChanged,
+                         selectedGenre: $selectedGenre,
+                         selectedSort: $selectedSort)
                 .tabItem {
                     Label("Featured", systemImage: "star.fill")
                     Text("Featured")
@@ -29,7 +33,9 @@ struct MainView: View {
                 .tag("Featured")
             SearchView(selectedTab: $selectedTab,
                        searchBarFocused: $searchBarFocused,
-                       settingsChanged: $settingsChanged)
+                       settingsChanged: $settingsChanged,
+                       selectedGenre: $selectedGenre,
+                       selectedSort: $selectedSort)
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                     Text("Search")
@@ -37,7 +43,9 @@ struct MainView: View {
                 .tag("Search")
             SettingsView(selectedTab: $selectedTab,
                          searchBarFocused: $searchBarFocused,
-                         settingsChanged: $settingsChanged)
+                         settingsChanged: $settingsChanged,
+                         selectedGenre: $selectedGenre,
+                         selectedSort: $selectedSort)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                     Text("Setting")

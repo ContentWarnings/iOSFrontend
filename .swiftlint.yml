@@ -1,5 +1,9 @@
 excluded:
   - Movie Mentor/Pods
 
+identifier_name:
+  allowed_symbols: "_"
+  min_length: 2
+
 type_name:
   allowed_symbols: "_"
