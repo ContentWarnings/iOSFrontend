@@ -41,8 +41,21 @@ class SearchViewModel: ObservableObject {
             .responseDecodable(of: SearchResponse.self) { response in
                 switch response.result {
                 case .success(let data):
-                    self.searchResults = data.results
-                    self.isDoneLoading = true
+                    var containsResults = false
+
+                    for movie in data.results where !movie.shouldHide() {
+                        containsResults = true
+                        break
+                    }
+
+                    if containsResults {
+                        self.isDoneLoading = true
+                        self.searchResults = data.results
+                    } else if data.results.count == 0 {
+                        self.canLoadMorePages = false
+                    } else {
+                        self.loadNextPage()
+                    }
                 case .failure(let error):
                     debugPrint(error)
                 }
@@ -75,12 +88,20 @@ class SearchViewModel: ObservableObject {
             .responseDecodable(of: SearchResponse.self) { response in
                 switch response.result {
                 case .success(let data):
-                    self.isLoadingNextPage = false
+                    var containsResults = false
 
-                    if data.results.count > 0 {
+                    for movie in data.results where !movie.shouldHide() {
+                        containsResults = true
+                        break
+                    }
+
+                    if containsResults {
+                        self.isLoadingNextPage = false
                         self.searchResults += data.results
-                    } else {
+                    } else if data.results.count == 0 {
                         self.canLoadMorePages = false
+                    } else {
+                        self.loadNextPage()
                     }
                 case .failure(let error):
                     debugPrint(error)
