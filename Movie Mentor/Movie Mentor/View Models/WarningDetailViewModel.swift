@@ -13,7 +13,7 @@ class WarningDetailViewModel: ObservableObject {
     }
 
     func checkIfVoted() {
-        AF.request(apiURL + "cw/" + warning.id + "/has-voted")
+        AF.request(apiURL + "cw/" + warning.id + "/has-voted").cacheResponse(using: .doNotCache)
             .responseDecodable(of: StringResponse.self) { response in
                 switch response.result {
                 case.success(let data):
@@ -27,7 +27,7 @@ class WarningDetailViewModel: ObservableObject {
     }
 
     func upvote() {
-        AF.request(apiURL + "cw/" + warning.id + "/upvote")
+        AF.request(apiURL + "cw/" + warning.id + "/upvote").cacheResponse(using: .doNotCache)
             .responseDecodable(of: StringResponse.self) { response in
                 switch response.result {
                 case .success(let data):
@@ -41,7 +41,7 @@ class WarningDetailViewModel: ObservableObject {
     }
 
     func downvote() {
-        AF.request(apiURL + "cw/" + warning.id + "/downvote")
+        AF.request(apiURL + "cw/" + warning.id + "/downvote").cacheResponse(using: .doNotCache)
             .responseDecodable(of: StringResponse.self) { response in
                 switch response.result {
                 case .success(let data):

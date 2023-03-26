@@ -28,7 +28,7 @@ struct FeaturedView: View {
                     if viewModel.isDoneLoading {
                         LazyVGrid(columns: columns) {
                             ForEach(viewModel.movies) { movie in
-                                if !movie.shouldHide() {
+                                if !movie.shouldHide() && !movie.shouldWarn() {
                                     NavigationLink(destination: NavigationLazyView(
                                         MovieDetailsView(settingsChanged: $settingsChanged,
                                                          movieId: movie.id,
