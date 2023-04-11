@@ -5,6 +5,7 @@ struct StreamingTileView: View {
     let streamType: String
     let providerImage: URL
     let streamingLink: URL
+    let streamService: String
 
     var body: some View {
         Link(destination: streamingLink) {
@@ -21,6 +22,8 @@ struct StreamingTileView: View {
                     .font(Font.custom("Roboto-Regular", size: 16))
                     .foregroundColor(.primary)
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(streamType + " through " + streamService)
         }
     }
 }
@@ -29,6 +32,7 @@ struct StreamingTileView_Previews: PreviewProvider {
     static var previews: some View {
         StreamingTileView(streamType: MovieFull.testData.streamingProviders[0][0],
                           providerImage: URL(string: MovieFull.testData.streamingProviders[0][1])!,
-                          streamingLink: MovieFull.testData.streamingLink)
+                          streamingLink: MovieFull.testData.streamingLink,
+                          streamService: MovieFull.testData.streamingProviders[0][2])
     }
 }

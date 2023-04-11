@@ -146,7 +146,7 @@ struct TermsOfServiceView: View {
                         right to resolve disputes in any manner we see fit. To file a complaint, contact \
                         moviementor@divi.sh. Disputes have no grounding after three (3) months since the incident in \
                         question. For purposes of litigation, arbitration, and liability, we operate out of the city \
-                        of Seattle in King County, Washington, United Stated of America.
+                        of Seattle in King County, Washington, United States of America.
 
                         Last Updated 2023-03-11
                         """)
