@@ -18,8 +18,9 @@ struct MovieFull: Decodable, Identifiable {
 
         // Format streaming provider info into 2D array for easy displaying
         for provider in self.streaming_info?.providers ?? [] {
-            let string = provider[0].components(separatedBy: "- ")[1].capitalized
-            array.append(Array([string, provider[1]]))
+            let type = provider[0].components(separatedBy: "- ")[1].capitalized
+            let service = provider[0].components(separatedBy: "- ")[0].capitalized
+            array.append(Array([type, provider[1], service]))
         }
 
         return array
@@ -112,9 +113,12 @@ extension StreamingInfo {
     static let testData: StreamingInfo =
         StreamingInfo(providers: [
           ["Rent",
-           "https://image.tmdb.org/t/p/original/peURlLlr8jggOwK53fJ5wdQl05y.jpg"],
+           "https://image.tmdb.org/t/p/original/peURlLlr8jggOwK53fJ5wdQl05y.jpg",
+           "Apple Tv"
+          ],
           ["Rent",
-           "https://image.tmdb.org/t/p/original/5NyLm42TmCqCMOZFvH4fcoSNKEW.jpg"]],
+           "https://image.tmdb.org/t/p/original/5NyLm42TmCqCMOZFvH4fcoSNKEW.jpg",
+           "Amazon"]],
                       tmdb_link: URL(string:
                         "https://www.themoviedb.org/movie/315162-puss-in-boots-the-last-wish/watch?locale=US")!)
 }

@@ -13,6 +13,7 @@ struct AttributionView: View {
                     [JustWatch API](https://apis.justwatch.com/docs/api/)
                     """)
                     .font(Font.custom("Roboto-Regular", size: 21))
+                Image("TMDBLogo")
             }
             .padding()
         }
