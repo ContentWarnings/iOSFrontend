@@ -59,6 +59,7 @@ struct MainView: View {
                 searchBarFocused = false
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
