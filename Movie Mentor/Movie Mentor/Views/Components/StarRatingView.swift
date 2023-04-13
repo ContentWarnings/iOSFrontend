@@ -44,6 +44,9 @@ struct StarRatingView: View {
             }
         }
         .font(.system(size: 20))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Movie Rating")
+        .accessibilityValue(rating.description)
     }
 }
 

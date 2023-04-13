@@ -54,7 +54,8 @@ struct MovieDetailsView: View {
                             ForEach(viewModel.movie.streamingProviders, id: \.self) { provider in
                                 StreamingTileView(streamType: provider[0],
                                                   providerImage: URL(string: provider[1])!,
-                                                  streamingLink: viewModel.movie.streamingLink)
+                                                  streamingLink: viewModel.movie.streamingLink,
+                                                  streamService: provider[2])
                             }
                         }
                     }
