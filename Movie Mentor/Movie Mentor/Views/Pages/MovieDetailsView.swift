@@ -49,6 +49,11 @@ struct MovieDetailsView: View {
                     .padding(.top, 24.0)
                     .padding(.horizontal, 25.0)
                     .padding(.bottom)
+                    Text("Streaming Information Provided by JustWatch")
+                        .font(Font.custom("Roboto-Regular", size: 12))
+                        .padding(.horizontal, 25.0)
+                        .padding(.bottom)
+                        .opacity(0.5)
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack {
                             ForEach(viewModel.movie.streamingProviders, id: \.self) { provider in

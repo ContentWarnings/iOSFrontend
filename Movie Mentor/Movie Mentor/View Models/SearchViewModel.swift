@@ -54,6 +54,8 @@ class SearchViewModel: ObservableObject {
                         self.searchResults = data.results
                     } else if data.results.count == 0 {
                         // Backend responded with no results, so don't check any more pages
+                        self.searchResults = []
+                        self.isDoneLoading = true
                         self.canLoadMorePages = false
                     } else {
                         // Backend returned results but they were all hidden, so try next page
